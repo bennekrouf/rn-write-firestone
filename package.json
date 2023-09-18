@@ -4,6 +4,10 @@
   "main": "dist/index.js",
   "license": "MIT",
   "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bennekrouf/rn-write-firestone.git"
+  },
   "devDependencies": {
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^12.3.0",
