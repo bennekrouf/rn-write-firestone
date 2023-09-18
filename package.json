@@ -1,8 +1,9 @@
 {
-  "name": "rn-auth-firebase",
-  "version": "1.0.6",
+  "name": "rn-write-firestone",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "license": "MIT",
+  "types": "index.d.ts",
   "devDependencies": {
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^12.3.0",

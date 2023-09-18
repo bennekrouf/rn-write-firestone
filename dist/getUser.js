@@ -12,24 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.signInGoogle = void 0;
-const auth_1 = __importDefault(require("@react-native-firebase/auth"));
-const google_signin_1 = require("@react-native-google-signin/google-signin");
-const signInGoogle = () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        yield google_signin_1.GoogleSignin.hasPlayServices();
-        const result = yield google_signin_1.GoogleSignin.signIn();
-        return auth_1.default.GoogleAuthProvider.credential(result.idToken);
-    }
-    catch (error) {
-        console.log(error);
-        if (error.code === google_signin_1.statusCodes.SIGN_IN_CANCELLED) {
-            console.log('SIGN_IN_CANCELLED');
-            // User cancelled the login flow
+exports.getUser = void 0;
+const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
+function getUser() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const userString = yield async_storage_1.default.getItem('user');
+            if (userString !== null) {
+                return JSON.parse(userString);
+            }
+            else {
+                console.log("No user data found.");
+                return null;
+            }
         }
-        else {
-            console.log('ERROR in sign in: ', error);
+        catch (e) {
+            console.error("Failed to get user from storage:", e);
+            return null;
         }
-    }
-});
-exports.signInGoogle = signInGoogle;
+    });
+}
+exports.getUser = getUser;

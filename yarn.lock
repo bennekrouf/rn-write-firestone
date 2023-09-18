@@ -2248,6 +2248,20 @@ resolve@^1.20.0:
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
+rn-write-firestone@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/rn-write-firestone/-/rn-write-firestone-1.0.0.tgz#1635e3040dab8f601d263133a75d35da2e53e10a"
+  integrity sha512-TRQl4HDOL6p8nkQentC7s5/rs5QD4NnP1pMqI/Jnj+DkV2ZUJNF/rzMrb3CJBcocUAl+bz+dTkH28C1kaegOVA==
+  dependencies:
+    "@react-native-async-storage/async-storage" "^1.19.3"
+    "@react-native-firebase/app" "^18.4.0"
+    "@react-native-firebase/auth" "^18.4.0"
+    "@react-native-firebase/firestore" "^18.4.0"
+    "@react-native-google-signin/google-signin" "^10.0.1"
+    "@react-navigation/native" "^6.1.7"
+    "@react-navigation/stack" "^6.3.17"
+    events "^3.3.0"
+
 semver@^6.3.0, semver@^6.3.1:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.1.tgz#556d2ef8689146e46dcea4bfdd095f3434dffcb4"
