@@ -11,7 +11,7 @@ const customInitializeFirebase = (firebaseConfig) => {
         app_1.default.initializeApp(firebaseConfig);
     }
     else {
-        console.log(`RN Found firebase app`);
+        console.log(`RN Found firebase app : ${JSON.stringify(app_1.default.apps)}`);
         app_1.default.app();
     }
 };
