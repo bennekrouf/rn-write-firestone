@@ -15,6 +15,6 @@ declare module 'rn-write-firestone' {
       googleCredential: any
     ): Promise<User>;
 
-    export function writeInFirebase(app: string, data: any): Promise<User | null>;
+    export function writeToFirebase(app: string, data: any): Promise<User | null>;
   }
   
