@@ -15,16 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeToAsyncStorage = void 0;
 const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
 const getUser_1 = require("./getUser");
-const writeToAsyncStorage = (data) => __awaiter(void 0, void 0, void 0, function* () {
+const writeToAsyncStorage = (app, data) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield (0, getUser_1.getUser)();
     try {
+        const key = `${user}-${app}`;
         // Retrieve current data from AsyncStorage
-        const existingDataString = yield async_storage_1.default.getItem('user');
+        const existingDataString = yield async_storage_1.default.getItem(key);
         const existingData = existingDataString ? JSON.parse(existingDataString) : {};
         // Merge existing AsyncStorage data with the new data being provided
         const mergedData = Object.assign(Object.assign({}, existingData), data);
         // Saving merged data to AsyncStorage
-        yield async_storage_1.default.setItem('user', JSON.stringify(mergedData));
+        yield async_storage_1.default.setItem(key, JSON.stringify(mergedData));
         console.log('Data merged and stored in AsyncStorage.');
     }
     catch (error) {

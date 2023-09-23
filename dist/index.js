@@ -18,3 +18,4 @@ __exportStar(require("./signInFirebase"), exports);
 __exportStar(require("./writeToFirebase"), exports);
 __exportStar(require("./writeToAsyncStorage"), exports);
 __exportStar(require("./syncAsyncStorageToFirestore"), exports);
+__exportStar(require("./getUser"), exports);
