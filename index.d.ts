@@ -16,5 +16,8 @@ declare module 'rn-write-firestone' {
     ): Promise<User>;
 
     export function writeToFirebase(app: string, data: any): Promise<User | null>;
+    export function writeToAsyncStorage(app: string, data: any): Promise<User | null>;
+    export function syncAsyncStorageToFirestore(app: string): Promise<null>;
+    export function getUser(): Promise<User | null>;
   }
   
