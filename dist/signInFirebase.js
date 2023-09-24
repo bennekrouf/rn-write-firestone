@@ -17,14 +17,14 @@ const auth_1 = __importDefault(require("@react-native-firebase/auth"));
 const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
 const customInitializeFirebase_1 = require("./customInitializeFirebase");
 const writeToFirebase_1 = require("./writeToFirebase");
-const signInFirebase = (app, firebaseConfig, googleCredential) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(`RN firebaseConfig : ${JSON.stringify(firebaseConfig)} app : ${JSON.stringify(app)}`);
+const signInFirebase = (firebaseConfig, googleCredential) => __awaiter(void 0, void 0, void 0, function* () {
+    // console.log(`RN firebaseConfig : ${JSON.stringify(firebaseConfig)} app : ${JSON.stringify(app)}`);
     (0, customInitializeFirebase_1.customInitializeFirebase)(firebaseConfig);
     // Sign in to Firebase
     const firebaseUserCredential = yield (0, auth_1.default)().signInWithCredential(googleCredential);
     // Save user to AsyncStorage
     yield async_storage_1.default.setItem('user', JSON.stringify(firebaseUserCredential.user));
-    (0, writeToFirebase_1.writeToFirebase)(app, { lastConnectionDate: new Date() });
+    (0, writeToFirebase_1.writeToFirebase)({ lastConnectionDate: new Date() });
     return firebaseUserCredential.user;
 });
 exports.signInFirebase = signInFirebase;

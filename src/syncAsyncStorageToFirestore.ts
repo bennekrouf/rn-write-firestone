@@ -1,8 +1,10 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import {getUser} from './getUser';
 import firestore from '@react-native-firebase/firestore';
+import {getUser} from './getUser';
+import { getAppName } from './getAppName';
 
-export const syncAsyncStorageToFirestore = async (app: string) => {
+export const syncAsyncStorageToFirestore = async () => {
+  const app = getAppName();
   const user = await getUser();
   const id = user?.email || user?.uid;
   const appCollection = app?.toLocaleLowerCase();

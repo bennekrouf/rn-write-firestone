@@ -1,11 +1,10 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import { getUser } from './getUser';
+import { getKey } from './getKey';
 
 export const writeToAsyncStorage = async (app: string, data:any) => {
-  const user = await getUser();
+  const key = await getKey();
 
   try {
-    const key = `${user}-${app}`;
     // Retrieve current data from AsyncStorage
     const existingDataString = await AsyncStorage.getItem(key);
     const existingData = existingDataString ? JSON.parse(existingDataString) : {};
@@ -16,11 +15,10 @@ export const writeToAsyncStorage = async (app: string, data:any) => {
     // Saving merged data to AsyncStorage
     await AsyncStorage.setItem(key, JSON.stringify(mergedData));
 
-    console.log('Data merged and stored in AsyncStorage.');
-
+    console.log(`Data merged and stored in AsyncStorage ${await AsyncStorage.getItem(key)}`);
   } catch (error) {
     console.error("Error fetching or merging data", error);
   }
 
-  return user;
+  return true;
 }

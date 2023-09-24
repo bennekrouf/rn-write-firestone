@@ -8,11 +8,11 @@ const app_1 = __importDefault(require("@react-native-firebase/app"));
 const customInitializeFirebase = (firebaseConfig) => {
     if (!app_1.default.apps.length) {
         console.log(`RN Init firebase app with : ${firebaseConfig}`);
-        app_1.default.initializeApp(firebaseConfig);
+        return app_1.default.initializeApp(firebaseConfig);
     }
     else {
         console.log(`RN Found firebase app : ${JSON.stringify(app_1.default.apps)}`);
-        app_1.default.app();
+        return app_1.default.app();
     }
 };
 exports.customInitializeFirebase = customInitializeFirebase;

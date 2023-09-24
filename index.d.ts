@@ -10,14 +10,13 @@ declare module 'rn-write-firestone' {
     }
   
     export function signInFirebase(
-      app: string,
       firebaseConfig: FirebaseConfig,
       googleCredential: any
     ): Promise<User>;
 
-    export function writeToFirebase(app: string, data: any): Promise<User | null>;
-    export function writeToAsyncStorage(app: string, data: any): Promise<User | null>;
-    export function syncAsyncStorageToFirestore(app: string): Promise<null>;
+    export function writeToFirebase(data: any): Promise<User | null>;
+    export function writeToAsyncStorage(data: any): Promise<User | null>;
+    export function syncAsyncStorageToFirestore(): Promise<null>;
     export function getUser(): Promise<User | null>;
   }
   

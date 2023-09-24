@@ -1,18 +1,19 @@
 import firestore from '@react-native-firebase/firestore';
-import {getUser} from './getUser';
+import {getKey} from './getKey';
 import AsyncStorage from '@react-native-community/async-storage';
+import { getAppName } from './getAppName';
 
-export const writeToFirebase = async (app:string, data:any, persistInAsyncStorage: boolean = true) => {
-  const user = await getUser();
-  const id = user?.email || user?.uid;
+export const writeToFirebase = async (data:any, persistInAsyncStorage: boolean = true) => {
+  const app = getAppName();
+  const key = await getKey();
   const appCollection = app?.toLocaleLowerCase();
 
-  console.log(`Try to persist in : ${appCollection}/${id}`);
+  console.log(`Try to persist in : ${key}`);
 
   if (persistInAsyncStorage) {
     try {
       // Retrieve current data from firestore
-      const documentSnapshot = await firestore().collection(appCollection).doc(id).get();
+      const documentSnapshot = await firestore().collection(appCollection).doc(key).get();
 
       // Initial mergedData is the new data being provided
       let mergedData = data;
@@ -38,10 +39,10 @@ export const writeToFirebase = async (app:string, data:any, persistInAsyncStorag
 
   await firestore()
     .collection(appCollection)
-    .doc(id)
+    .doc(key)
     .set(data, { merge: true });
 
   console.log('AFTER firestore()');
 
-  return user;
+  return true;
 }

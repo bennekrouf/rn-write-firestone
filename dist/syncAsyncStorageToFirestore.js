@@ -14,9 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.syncAsyncStorageToFirestore = void 0;
 const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
-const getUser_1 = require("./getUser");
 const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
-const syncAsyncStorageToFirestore = (app) => __awaiter(void 0, void 0, void 0, function* () {
+const getUser_1 = require("./getUser");
+const getAppName_1 = require("./getAppName");
+const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, function* () {
+    const app = (0, getAppName_1.getAppName)();
     const user = yield (0, getUser_1.getUser)();
     const id = (user === null || user === void 0 ? void 0 : user.email) || (user === null || user === void 0 ? void 0 : user.uid);
     const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();

@@ -14,17 +14,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeToFirebase = void 0;
 const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
-const getUser_1 = require("./getUser");
+const getKey_1 = require("./getKey");
 const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
-const writeToFirebase = (app, data, persistInAsyncStorage = true) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield (0, getUser_1.getUser)();
-    const id = (user === null || user === void 0 ? void 0 : user.email) || (user === null || user === void 0 ? void 0 : user.uid);
+const getAppName_1 = require("./getAppName");
+const writeToFirebase = (data, persistInAsyncStorage = true) => __awaiter(void 0, void 0, void 0, function* () {
+    const app = (0, getAppName_1.getAppName)();
+    const key = yield (0, getKey_1.getKey)();
     const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
-    console.log(`Try to persist in : ${appCollection}/${id}`);
+    console.log(`Try to persist in : ${key}`);
     if (persistInAsyncStorage) {
         try {
             // Retrieve current data from firestore
-            const documentSnapshot = yield (0, firestore_1.default)().collection(appCollection).doc(id).get();
+            const documentSnapshot = yield (0, firestore_1.default)().collection(appCollection).doc(key).get();
             // Initial mergedData is the new data being provided
             let mergedData = data;
             if (documentSnapshot.exists) {
@@ -45,9 +46,9 @@ const writeToFirebase = (app, data, persistInAsyncStorage = true) => __awaiter(v
     }
     yield (0, firestore_1.default)()
         .collection(appCollection)
-        .doc(id)
+        .doc(key)
         .set(data, { merge: true });
     console.log('AFTER firestore()');
-    return user;
+    return true;
 });
 exports.writeToFirebase = writeToFirebase;
