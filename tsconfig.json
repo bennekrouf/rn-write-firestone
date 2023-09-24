@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "typeRoots": ["./types", "./node_modules/@types"],
     "jsx": "react",
     "outDir": "./dist",  // specify the output directory
     "rootDir": "./src",  // specify the root directory of source files

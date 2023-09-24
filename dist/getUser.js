@@ -27,7 +27,7 @@ function getUser() {
             }
         }
         catch (e) {
-            console.error("Failed to get user from storage:", e);
+            console.error("RNN Failed to get user from storage:", e);
             return null;
         }
     });

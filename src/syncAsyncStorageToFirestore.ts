@@ -30,6 +30,6 @@ export const syncAsyncStorageToFirestore = async () => {
     console.log('Synced AsyncStorage data to Firestore.');
 
   } catch (error) {
-    console.error("Error synchronizing data", error);
+    console.error("RNNN Error synchronizing data", error);
   }
 }

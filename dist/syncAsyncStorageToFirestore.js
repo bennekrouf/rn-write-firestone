@@ -39,7 +39,7 @@ const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, func
         console.log('Synced AsyncStorage data to Firestore.');
     }
     catch (error) {
-        console.error("Error synchronizing data", error);
+        console.error("RNNN Error synchronizing data", error);
     }
 });
 exports.syncAsyncStorageToFirestore = syncAsyncStorageToFirestore;
