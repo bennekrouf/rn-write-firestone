@@ -1,6 +1,6 @@
 {
   "name": "rn-write-firestone",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "main": "dist/index.js",
   "license": "MIT",
   "types": "index.d.ts",

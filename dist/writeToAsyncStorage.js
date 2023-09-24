@@ -28,7 +28,7 @@ const writeToAsyncStorage = (app, data) => __awaiter(void 0, void 0, void 0, fun
         console.log(`Data merged and stored in AsyncStorage ${yield async_storage_1.default.getItem(key)}`);
     }
     catch (error) {
-        console.error("RNNNN Error fetching or merging data", error);
+        console.error("RNNNN Error fetching or merging data writeToAsyncStorage", error);
     }
     return true;
 });

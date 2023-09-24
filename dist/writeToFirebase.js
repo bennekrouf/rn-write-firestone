@@ -41,14 +41,11 @@ const writeToFirebase = (data, persistInAsyncStorage = true) => __awaiter(void 0
             yield async_storage_1.default.setItem('user', JSON.stringify(mergedData));
         }
         catch (error) {
-            console.error("RNNNN Error fetching or merging data", error);
+            console.error("RNNNN Error fetching or merging data writeToFirebase", error);
         }
     }
     try {
-        yield (0, firestore_1.default)()
-            .collection(appCollection)
-            .doc(key)
-            .set(data, { merge: true });
+        yield (0, firestore_1.default)().collection(appCollection).doc(key).set(data, { merge: true });
         console.log('AFTER firestore()');
         return true;
     }

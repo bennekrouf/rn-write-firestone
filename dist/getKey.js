@@ -11,9 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getKey = void 0;
 const getUser_1 = require("./getUser");
-const getAppName_1 = require("./getAppName");
 const getKey = () => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield (0, getUser_1.getUser)();
-    return `${(user === null || user === void 0 ? void 0 : user.email) || user.uid}-${(0, getAppName_1.getAppName)()}`;
+    return `${(user === null || user === void 0 ? void 0 : user.email) || user.uid}`;
 });
 exports.getKey = getKey;
