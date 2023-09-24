@@ -17,7 +17,7 @@ export const writeToAsyncStorage = async (app: string, data:any) => {
 
     console.log(`Data merged and stored in AsyncStorage ${await AsyncStorage.getItem(key)}`);
   } catch (error) {
-    console.error("RNNNN Error fetching or merging data", error);
+    console.error("RNNNN Error fetching or merging data writeToAsyncStorage", error);
   }
 
   return true;

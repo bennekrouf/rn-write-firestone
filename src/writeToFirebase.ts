@@ -33,18 +33,14 @@ export const writeToFirebase = async (data:any, persistInAsyncStorage: boolean =
       // Saving merged data to AsyncStorage
       await AsyncStorage.setItem('user', JSON.stringify(mergedData));      
     } catch (error) {
-      console.error("RNNNN Error fetching or merging data", error);
+      console.error("RNNNN Error fetching or merging data writeToFirebase", error);
     }
   }
 
   try {
-    await firestore()
-    .collection(appCollection)
-    .doc(key)
-    .set(data, { merge: true });
+    await firestore().collection(appCollection).doc(key).set(data, { merge: true });
 
     console.log('AFTER firestore()');
-
     return true;
   } catch (error) {
     console.error("RNNNN Error firestore ", error);
