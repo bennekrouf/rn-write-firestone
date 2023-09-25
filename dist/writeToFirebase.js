@@ -46,11 +46,24 @@ const writeToFirebase = (data, persistInAsyncStorage = true) => __awaiter(void 0
     }
     try {
         yield (0, firestore_1.default)().collection(appCollection).doc(key).set(data, { merge: true });
-        console.log('AFTER firestore()');
         return true;
     }
     catch (error) {
-        console.error("RNNNN Error firestore ", error);
+        console.error("An error occurred:", error.message);
+        console.log(`Please ensure you have the following Firestore rules set up:
+
+      rules_version = '2';
+      service cloud.firestore {
+        match /databases/{database}/documents {
+
+          // Dynamic Rules for any appCollection
+          match /{appCollection}/{id} {
+            allow read, write: if request.auth != null && 
+                              (request.auth.token.email == id || request.auth.token.uid == id);
+          }
+        }
+      }
+      `);
     }
 });
 exports.writeToFirebase = writeToFirebase;
