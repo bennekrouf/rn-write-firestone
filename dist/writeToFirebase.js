@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeToFirebase = void 0;
 const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
 const getKey_1 = require("./getKey");
-const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
 const getAppName_1 = require("./getAppName");
 const writeToFirebase = (data, persistInAsyncStorage = true) => __awaiter(void 0, void 0, void 0, function* () {
     const app = (0, getAppName_1.getAppName)();
@@ -24,21 +23,25 @@ const writeToFirebase = (data, persistInAsyncStorage = true) => __awaiter(void 0
     console.log(`Try to persist in : ${key}`);
     if (persistInAsyncStorage) {
         try {
+            console.log(`Before n await firestore().collection`);
             // Retrieve current data from firestore
             const documentSnapshot = yield (0, firestore_1.default)().collection(appCollection).doc(key).get();
             // Initial mergedData is the new data being provided
             let mergedData = data;
+            console.log(`Before documentSnapshot.exists`);
             if (documentSnapshot.exists) {
+                console.log(`Before documentSnapshot.data()`);
                 const firestoreData = documentSnapshot.data();
+                console.log(`Before mergedData = { ...firestoreData, ...data } ${JSON.stringify(firestoreData)}`);
                 mergedData = Object.assign(Object.assign({}, firestoreData), data); // Merging firestore data with new data
             }
             // Retrieve current data from AsyncStorage
-            const existingDataString = yield async_storage_1.default.getItem('user');
-            const existingData = existingDataString ? JSON.parse(existingDataString) : {};
+            // const existingDataString = await AsyncStorage.getItem('user');
+            // const existingData = existingDataString ? JSON.parse(existingDataString) : {};
             // Merge existing AsyncStorage data with previously merged data
-            mergedData = Object.assign(Object.assign({}, existingData), mergedData);
+            // mergedData = { ...existingData, ...mergedData };
             // Saving merged data to AsyncStorage
-            yield async_storage_1.default.setItem('user', JSON.stringify(mergedData));
+            // await AsyncStorage.setItem('user', JSON.stringify(mergedData));      
         }
         catch (error) {
             console.error("RNNNN Error fetching or merging data writeToFirebase", error);

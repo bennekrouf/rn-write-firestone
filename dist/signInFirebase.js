@@ -19,7 +19,7 @@ const customInitializeFirebase_1 = require("./customInitializeFirebase");
 const writeToFirebase_1 = require("./writeToFirebase");
 const signInFirebase = (firebaseConfig, googleCredential) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // console.log(`RN firebaseConfig : ${JSON.stringify(firebaseConfig)} app : ${JSON.stringify(app)}`);
+        console.log(`RN firebaseConfig : ${JSON.stringify(firebaseConfig)}`);
         (0, customInitializeFirebase_1.customInitializeFirebase)(firebaseConfig);
         // Sign in to Firebase
         const firebaseUserCredential = yield (0, auth_1.default)().signInWithCredential(googleCredential);
