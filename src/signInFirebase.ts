@@ -5,7 +5,7 @@ import {writeToFirebase} from './writeToFirebase';
 
 export const signInFirebase = async (firebaseConfig:any, googleCredential:any) => {
   try {
-    // console.log(`RN firebaseConfig : ${JSON.stringify(firebaseConfig)} app : ${JSON.stringify(app)}`);
+    console.log(`RN firebaseConfig : ${JSON.stringify(firebaseConfig)}`);
     customInitializeFirebase(firebaseConfig);
 
     // Sign in to Firebase
