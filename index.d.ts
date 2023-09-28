@@ -14,7 +14,7 @@ declare module 'rn-write-firestone' {
       googleCredential: any
     ): Promise<User>;
 
-    export function writeToFirebase(data: any): Promise<User | null>;
+    export function writeToFirebase(data: any, merge?: boolean): Promise<User | null>;
     export function writeToAsyncStorage(data: any): Promise<User | null>;
     export function syncAsyncStorageToFirestore(): Promise<null>;
     export function getUser(): Promise<User | null>;

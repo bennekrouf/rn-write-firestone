@@ -12,7 +12,7 @@ export const signInFirebase = async (firebaseConfig:any, googleCredential:any) =
     const firebaseUserCredential = await auth().signInWithCredential(googleCredential);
     // Save user to AsyncStorage
     await AsyncStorage.setItem('user', JSON.stringify(firebaseUserCredential.user));
-    writeToFirebase({lastConnectionDate: new Date()});
+    writeToFirebase({lastConnectionDate: new Date()}, true);
     return firebaseUserCredential.user;
   } catch (error) {
     console.log('RNNNN ERROR HE HO :', error);
