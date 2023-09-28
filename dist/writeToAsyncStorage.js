@@ -23,6 +23,7 @@ const writeToAsyncStorage = (key, data) => __awaiter(void 0, void 0, void 0, fun
         const existingData = existingDataString ? JSON.parse(existingDataString) : {};
         // Merge existing AsyncStorage data with the new data being provided
         const mergedData = Object.assign(Object.assign({}, existingData), data);
+        console.log(`In writeToAsyncStorage AsyncStorage.setItem key : ${JSON.stringify(key)} mergedData ${JSON.stringify(mergedData)}`);
         // Saving merged data to AsyncStorage
         yield async_storage_1.default.setItem(userKey, JSON.stringify({ [key]: JSON.stringify(mergedData) }));
         console.log(`Data merged and stored in AsyncStorage ${yield async_storage_1.default.getItem(userKey)}`);

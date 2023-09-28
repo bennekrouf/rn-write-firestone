@@ -11,7 +11,7 @@ export const writeToAsyncStorage = async (key: string, data: any) => {
 
     // Merge existing AsyncStorage data with the new data being provided
     const mergedData = { ...existingData, ...data };
-
+    console.log(`In writeToAsyncStorage AsyncStorage.setItem key : ${JSON.stringify(key)} mergedData ${JSON.stringify(mergedData)}`);
     // Saving merged data to AsyncStorage
     await AsyncStorage.setItem(userKey, JSON.stringify({[key]: JSON.stringify(mergedData)}));
 
