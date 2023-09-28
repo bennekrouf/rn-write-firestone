@@ -14,13 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeToFirebase = void 0;
 const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
+// import AsyncStorage from '@react-native-community/async-storage';
 const getKey_1 = require("./getKey");
 const getAppName_1 = require("./getAppName");
 const writeToFirebase = (data, persistInAsyncStorage = true) => __awaiter(void 0, void 0, void 0, function* () {
     const app = (0, getAppName_1.getAppName)();
     const key = yield (0, getKey_1.getKey)();
     const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
-    console.log(`Try to persist in : ${key}`);
+    console.log(`Try to persist key : ${key} Value : ${JSON.stringify(data)}`);
     if (persistInAsyncStorage) {
         try {
             console.log(`Before n await firestore().collection`);

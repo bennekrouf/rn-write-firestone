@@ -1,5 +1,5 @@
 import firestore from '@react-native-firebase/firestore';
-import AsyncStorage from '@react-native-community/async-storage';
+// import AsyncStorage from '@react-native-community/async-storage';
 
 import {getKey} from './getKey';
 import { getAppName } from './getAppName';
@@ -9,7 +9,7 @@ export const writeToFirebase = async (data:any, persistInAsyncStorage: boolean =
   const key = await getKey();
   const appCollection = app?.toLocaleLowerCase();
 
-  console.log(`Try to persist in : ${key}`);
+  console.log(`Try to persist key : ${key} Value : ${JSON.stringify(data)}`);
 
   if (persistInAsyncStorage) {
     try {
