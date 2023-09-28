@@ -8,7 +8,7 @@ export const writeToFirebase = async (data:any, merge: boolean = true) => {
   const key = await getKey();
   const appCollection = app?.toLocaleLowerCase();
 
-  console.log(`Try to persist key : ${key} Value : ${JSON.stringify(data)}`);
+  console.log(`Try to persist appCollection : ${appCollection} key : ${key} Value : ${JSON.stringify(data)}`);
   try {
     return firestore().collection(appCollection).doc(key).set(data, { merge });
   } catch (error:any) {

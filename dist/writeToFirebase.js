@@ -20,7 +20,7 @@ const writeToFirebase = (data, merge = true) => __awaiter(void 0, void 0, void 0
     const app = (0, getAppName_1.getAppName)();
     const key = yield (0, getKey_1.getKey)();
     const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
-    console.log(`Try to persist key : ${key} Value : ${JSON.stringify(data)}`);
+    console.log(`Try to persist appCollection : ${appCollection} key : ${key} Value : ${JSON.stringify(data)}`);
     try {
         return (0, firestore_1.default)().collection(appCollection).doc(key).set(data, { merge });
     }
