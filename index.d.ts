@@ -3,7 +3,7 @@ declare module 'rn-write-firestone' {
       apiKey: string;
       authDomain: string;
     }
-  
+
     interface User {
       uid: string;
       email: string;
@@ -15,6 +15,7 @@ declare module 'rn-write-firestone' {
     ): Promise<User>;
 
     export function writeToFirebase(data: any, merge?: boolean): Promise<User | null>;
+    export function loadFromFirebase(): Promise<User | null>;
     export function writeToAsyncStorage(data: any, merge?: boolean): Promise<User | null>;
     export function syncAsyncStorageToFirestore(): Promise<null>;
     export function getUser(): Promise<User | null>;

@@ -16,6 +16,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./signInFirebase"), exports);
 __exportStar(require("./writeToFirebase"), exports);
+__exportStar(require("./loadFromFirebase"), exports);
 __exportStar(require("./writeToAsyncStorage"), exports);
 __exportStar(require("./syncAsyncStorageToFirestore"), exports);
 __exportStar(require("./getUser"), exports);
