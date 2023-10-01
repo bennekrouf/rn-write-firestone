@@ -7,6 +7,7 @@ declare module 'rn-write-firestone' {
     interface User {
       uid: string;
       email: string;
+      data: any;
     }
   
     export function signInFirebase(
