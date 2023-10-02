@@ -1,6 +1,6 @@
 {
   "name": "rn-write-firestore",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "main": "dist/index.js",
   "license": "MIT",
   "types": "index.d.ts",

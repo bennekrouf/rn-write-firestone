@@ -7,7 +7,7 @@ The context of using this package is:
 
 ```bash
   # use yarn, it is faster and safer
-  yarn add rn-write-firestone
+  yarn add rn-write-firestore
   npx pod-install
 ```
 
