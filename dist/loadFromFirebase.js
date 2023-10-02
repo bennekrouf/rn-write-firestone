@@ -12,22 +12,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeToAsyncStorage = void 0;
-const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
-const getAppName_1 = require("./getAppName");
+exports.loadFromFirebase = void 0;
+const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
 const getKey_1 = require("./getKey");
-const writeToAsyncStorage = (data) => __awaiter(void 0, void 0, void 0, function* () {
+const getAppName_1 = require("./getAppName");
+const loadFromFirebase = () => __awaiter(void 0, void 0, void 0, function* () {
     const app = (0, getAppName_1.getAppName)();
     const key = yield (0, getKey_1.getKey)();
     const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
-    const storageKey = `${appCollection}:${key}`; // Formulating a unique key
-    console.log(`Try to persist storageKey : ${storageKey} Value : ${JSON.stringify(data)}`);
     try {
-        yield async_storage_1.default.setItem(storageKey, JSON.stringify(data));
-        console.log('Data successfully saved to AsyncStorage');
+        // Fetch document from Firestore
+        const documentSnapshot = yield (0, firestore_1.default)().collection(appCollection).doc(key).get();
+        // If the document exists, return its dat a. Else, return undefined or a default value.
+        if (documentSnapshot.exists) {
+            return documentSnapshot.data();
+        }
+        else {
+            console.log('No document found for the given key in the specified appCollection.');
+            return undefined; // or any default value you'd like to return
+        }
     }
     catch (error) {
         console.error("An error occurred:", error.message);
+        console.log(`Please ensure you have the appropriate Firestore rules set up and the document/key exists.`);
     }
 });
-exports.writeToAsyncStorage = writeToAsyncStorage;
+exports.loadFromFirebase = loadFromFirebase;
