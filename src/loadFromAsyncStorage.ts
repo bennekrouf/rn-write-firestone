@@ -11,6 +11,7 @@ export const loadFromAsyncStorage = async () => {
   const storageKey = `${appCollection}:${key}`;
 
   try {
+    console.log(`RN Loading from AsyncStorage with key : ${storageKey}`);
     const dataString = await AsyncStorage.getItem(storageKey);
 
     if (dataString) {

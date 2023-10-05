@@ -22,6 +22,7 @@ const loadFromAsyncStorage = () => __awaiter(void 0, void 0, void 0, function* (
     const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
     const storageKey = `${appCollection}:${key}`;
     try {
+        console.log(`RN Loading from AsyncStorage with key : ${storageKey}`);
         const dataString = yield async_storage_1.default.getItem(storageKey);
         if (dataString) {
             return JSON.parse(dataString); // Convert string back to object
