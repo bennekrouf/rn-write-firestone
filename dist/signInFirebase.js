@@ -24,9 +24,10 @@ const signInFirebase = (firebaseConfig, googleCredential) => __awaiter(void 0, v
         // Sign in to Firebase
         const firebaseUserCredential = yield (0, auth_1.default)().signInWithCredential(googleCredential);
         // Save user to AsyncStorage
-        console.log(`Set ${JSON.stringify(firebaseUserCredential.user)}`);
         yield async_storage_1.default.setItem('user', JSON.stringify(firebaseUserCredential.user));
-        (0, writeToFirebase_1.writeToFirebase)({ lastConnectionDate: new Date() }, true);
+        console.log(`Set last connection data in AsyncStorage ${JSON.stringify(firebaseUserCredential.user)}`);
+        const res = (0, writeToFirebase_1.writeToFirebase)({ lastConnectionDate: new Date() }, true);
+        console.log(`RN Write seems ok ${res}`);
         return firebaseUserCredential.user;
     }
     catch (error) {

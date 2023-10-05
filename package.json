@@ -14,13 +14,14 @@
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-firebase/app": "^18.4.0",
     "@react-native-firebase/auth": "^18.4.0",
-    "@react-native-firebase/firestore": "^18.5.0"
+    "@react-native-firebase/firestore": "^18.5.0",
+    "react-native-device-info": "^10.11.0"
   },
   "peerDependencies": {
     "react-native-device-info": "^10.11.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bennekrouf/rn-write-firestone.git"
+    "url": "https://github.com/bennekrouf/rn-write-firestore.git"
   }
 }

@@ -1,4 +1,4 @@
-declare module 'rn-write-firestone' {
+declare module 'rn-write-firestore' {
     interface FirebaseConfig {
       apiKey: string;
       authDomain: string;
