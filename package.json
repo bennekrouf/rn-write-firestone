@@ -1,23 +1,25 @@
 {
   "name": "rn-write-firestone",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "main": "dist/index.js",
   "license": "MIT",
   "types": "index.d.ts",
-  "devDependencies": {
-    "@types/react": "^18.2.21",
-    "@types/react-native": "^0.72.2",
-    "typescript": "^5.2.2"
-  },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.19.3",
     "@react-native-community/async-storage": "^1.12.1",
-    "@react-native-firebase/app": "^18.4.0",
-    "@react-native-firebase/auth": "^18.4.0",
+    "@react-native-firebase/app": "^18.5.0",
+    "@react-native-firebase/auth": "^18.5.0",
     "@react-native-firebase/firestore": "^18.5.0",
     "react-native-device-info": "^10.11.0"
   },
+  "devDependencies": {
+    "@types/react": "^18.2.21",
+    "@types/react-native": "^0.72.2",
+    "react-native": "^0.72.0",
+    "typescript": "^5.2.2"
+  },
   "peerDependencies": {
+    "react-native": "^0.60.0 || ^0.72.0 || ^1000.0.0",
     "react-native-device-info": "^10.11.0"
   },
   "repository": {
