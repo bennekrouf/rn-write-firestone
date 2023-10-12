@@ -1,12 +1,11 @@
 import firestore from '@react-native-firebase/firestore';
 
-import {getKey} from './getKey';
-import {getAppName} from './getAppName';
+import { getStorageKey } from './utils/getStorageKey';
+import { getAppName } from './utils/getAppName';
 
 export const loadFromFirebase = async () => {
-  const app = getAppName();
-  const key = await getKey();
-  const appCollection = app?.toLocaleLowerCase();
+  const key = await getStorageKey();
+  const appCollection = getAppName()?.toLocaleLowerCase();
 
   try {
     // Fetch document from Firestore

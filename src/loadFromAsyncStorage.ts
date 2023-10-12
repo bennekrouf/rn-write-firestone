@@ -1,16 +1,10 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { getKey } from './getKey';
-import { getAppName } from './getAppName';
+import { getStorageKey } from './utils/getStorageKey';
 
 export const loadFromAsyncStorage = async () => {
-  const app = getAppName();
-  const key = await getKey();
-  const appCollection = app?.toLocaleLowerCase();
-
-  const storageKey = `${appCollection}:${key}`;
-
   try {
+    const storageKey = await getStorageKey();
     console.log(`RN Loading from AsyncStorage with key : ${storageKey}`);
     const dataString = await AsyncStorage.getItem(storageKey);
 

@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadFromFirebase = void 0;
 const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
-const getKey_1 = require("./getKey");
-const getAppName_1 = require("./getAppName");
+const getStorageKey_1 = require("./utils/getStorageKey");
+const getAppName_1 = require("./utils/getAppName");
 const loadFromFirebase = () => __awaiter(void 0, void 0, void 0, function* () {
-    const app = (0, getAppName_1.getAppName)();
-    const key = yield (0, getKey_1.getKey)();
-    const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
+    var _a;
+    const key = yield (0, getStorageKey_1.getStorageKey)();
+    const appCollection = (_a = (0, getAppName_1.getAppName)()) === null || _a === void 0 ? void 0 : _a.toLocaleLowerCase();
     try {
         // Fetch document from Firestore
         const documentSnapshot = yield (0, firestore_1.default)().collection(appCollection).doc(key).get();

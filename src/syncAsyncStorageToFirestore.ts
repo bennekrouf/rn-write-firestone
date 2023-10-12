@@ -1,7 +1,7 @@
-import AsyncStorage from '@react-native-community/async-storage';
 import firestore from '@react-native-firebase/firestore';
 import {getUser} from './getUser';
-import { getAppName } from './getAppName';
+import { getAppName } from './utils/getAppName';
+import { loadFromAsyncStorage } from './loadFromAsyncStorage';
 
 export const syncAsyncStorageToFirestore = async () => {
   const app = getAppName();
@@ -11,7 +11,7 @@ export const syncAsyncStorageToFirestore = async () => {
 
   try {
     // Retrieve current data from AsyncStorage
-    const existingDataString = await AsyncStorage.getItem('user');
+    const existingDataString = await loadFromAsyncStorage();
     const asyncStorageData = existingDataString ? JSON.parse(existingDataString) : {};
 
     // Retrieve current data from firestore
@@ -31,5 +31,19 @@ export const syncAsyncStorageToFirestore = async () => {
 
   } catch (error) {
     console.error("RNNN Error synchronizing data", error);
+    console.log(`Please ensure you have the following Firestore rules set up:
+
+      rules_version = '2';
+      service cloud.firestore {
+        match /databases/{database}/documents {
+
+          // Dynamic Rules for any appCollection
+          match /{appCollection}/{id} {
+            allow read, write: if request.auth != null && 
+                              (request.auth.token.email == id || request.auth.token.uid == id);
+          }
+        }
+      }
+      `);
   }
 }

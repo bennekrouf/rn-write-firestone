@@ -13,10 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.syncAsyncStorageToFirestore = void 0;
-const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
 const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
 const getUser_1 = require("./getUser");
-const getAppName_1 = require("./getAppName");
+const getAppName_1 = require("./utils/getAppName");
+const loadFromAsyncStorage_1 = require("./loadFromAsyncStorage");
 const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, function* () {
     const app = (0, getAppName_1.getAppName)();
     const user = yield (0, getUser_1.getUser)();
@@ -24,7 +24,7 @@ const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, func
     const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
     try {
         // Retrieve current data from AsyncStorage
-        const existingDataString = yield async_storage_1.default.getItem('user');
+        const existingDataString = yield (0, loadFromAsyncStorage_1.loadFromAsyncStorage)();
         const asyncStorageData = existingDataString ? JSON.parse(existingDataString) : {};
         // Retrieve current data from firestore
         const documentSnapshot = yield (0, firestore_1.default)().collection(appCollection).doc(id).get();
@@ -40,6 +40,20 @@ const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, func
     }
     catch (error) {
         console.error("RNNN Error synchronizing data", error);
+        console.log(`Please ensure you have the following Firestore rules set up:
+
+      rules_version = '2';
+      service cloud.firestore {
+        match /databases/{database}/documents {
+
+          // Dynamic Rules for any appCollection
+          match /{appCollection}/{id} {
+            allow read, write: if request.auth != null && 
+                              (request.auth.token.email == id || request.auth.token.uid == id);
+          }
+        }
+      }
+      `);
     }
 });
 exports.syncAsyncStorageToFirestore = syncAsyncStorageToFirestore;

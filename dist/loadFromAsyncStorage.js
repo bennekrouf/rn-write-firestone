@@ -14,14 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadFromAsyncStorage = void 0;
 const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
-const getKey_1 = require("./getKey");
-const getAppName_1 = require("./getAppName");
+const getStorageKey_1 = require("./utils/getStorageKey");
 const loadFromAsyncStorage = () => __awaiter(void 0, void 0, void 0, function* () {
-    const app = (0, getAppName_1.getAppName)();
-    const key = yield (0, getKey_1.getKey)();
-    const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
-    const storageKey = `${appCollection}:${key}`;
     try {
+        const storageKey = yield (0, getStorageKey_1.getStorageKey)();
         console.log(`RN Loading from AsyncStorage with key : ${storageKey}`);
         const dataString = yield async_storage_1.default.getItem(storageKey);
         if (dataString) {

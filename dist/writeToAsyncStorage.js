@@ -14,13 +14,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeToAsyncStorage = void 0;
 const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
-const getAppName_1 = require("./getAppName");
-const getKey_1 = require("./getKey");
+const getStorageKey_1 = require("./utils/getStorageKey");
 const writeToAsyncStorage = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    const app = (0, getAppName_1.getAppName)();
-    const key = yield (0, getKey_1.getKey)();
-    const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
-    const storageKey = `${appCollection}:${key}`; // Formulating a unique key
+    const storageKey = yield (0, getStorageKey_1.getStorageKey)();
     console.log(`Try to persist storageKey : ${storageKey} Value : ${JSON.stringify(data)}`);
     try {
         yield async_storage_1.default.setItem(storageKey, JSON.stringify(data));

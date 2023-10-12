@@ -1,7 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 
-import {getKey} from './getKey';
-import { getAppName } from './getAppName';
+import {getKey} from './utils/getKey';
+import { getAppName } from './utils/getAppName';
 
 export const writeToFirebase = async (data:any, merge: boolean = true) => {
   const app = getAppName();

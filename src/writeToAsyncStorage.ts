@@ -1,14 +1,9 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { getAppName } from './getAppName';
-import {getKey} from './getKey';
+import { getStorageKey } from './utils/getStorageKey';
 
 export const writeToAsyncStorage = async (data: any) => {
-  const app = getAppName();
-  const key = await getKey();
-  const appCollection = app?.toLocaleLowerCase();
-
-  const storageKey = `${appCollection}:${key}`;  // Formulating a unique key
+  const storageKey = await getStorageKey();
 
   console.log(`Try to persist storageKey : ${storageKey} Value : ${JSON.stringify(data)}`);
 

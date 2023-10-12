@@ -14,8 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeToFirebase = void 0;
 const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
-const getKey_1 = require("./getKey");
-const getAppName_1 = require("./getAppName");
+const getKey_1 = require("./utils/getKey");
+const getAppName_1 = require("./utils/getAppName");
 const writeToFirebase = (data, merge = true) => __awaiter(void 0, void 0, void 0, function* () {
     const app = (0, getAppName_1.getAppName)();
     const key = yield (0, getKey_1.getKey)();
