@@ -1,5 +1,5 @@
 {
-  "name": "rn-write-firestone",
+  "name": "rn-write-firestore",
   "version": "1.0.36",
   "main": "dist/index.js",
   "license": "MIT",
