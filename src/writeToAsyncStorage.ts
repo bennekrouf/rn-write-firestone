@@ -8,7 +8,7 @@ export const writeToAsyncStorage = async (data: any) => {
   console.log(`Try to persist storageKey : ${storageKey} Value : ${JSON.stringify(data)}`);
 
   try {
-    await AsyncStorage.setItem(storageKey, JSON.stringify(data));
+    await AsyncStorage.setItem(storageKey[data], JSON.stringify(data));
     console.log('Data successfully saved to AsyncStorage');
   } catch (error:any) {
     console.error("An error occurred:", error.message);

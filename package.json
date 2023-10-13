@@ -1,6 +1,6 @@
 {
   "name": "rn-write-firestore",
-  "version": "1.0.36",
+  "version": "1.0.37",
   "main": "dist/index.js",
   "license": "MIT",
   "author": "Mohamed Bennekrouf",
