@@ -12,18 +12,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeToAsyncStorage = void 0;
+exports.flushFromAsyncStorage = void 0;
 const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
 const getStorageKey_1 = require("./utils/getStorageKey");
-const writeToAsyncStorage = (data) => __awaiter(void 0, void 0, void 0, function* () {
+const flushFromAsyncStorage = () => __awaiter(void 0, void 0, void 0, function* () {
     const storageKey = yield (0, getStorageKey_1.getStorageKey)();
-    console.log(`Try to persist storageKey : ${storageKey} Value : ${JSON.stringify(data)}`);
+    console.log(`Try to remove storageKey : ${storageKey} from AsyncStorage`);
     try {
-        yield async_storage_1.default.setItem(storageKey[data], JSON.stringify(data));
-        console.log('Data successfully saved to AsyncStorage');
+        yield async_storage_1.default.removeItem(storageKey);
+        console.log('Data successfully removed from AsyncStorage');
     }
     catch (error) {
         console.error("An error occurred:", error.message);
     }
 });
-exports.writeToAsyncStorage = writeToAsyncStorage;
+exports.flushFromAsyncStorage = flushFromAsyncStorage;
