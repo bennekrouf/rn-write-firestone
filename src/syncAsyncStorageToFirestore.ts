@@ -1,4 +1,5 @@
 import firestore from '@react-native-firebase/firestore';
+import { Logger } from 'rn-logging'; 
 import {getUser} from './getUser';
 import { getAppName } from './utils/getAppName';
 import { loadFromAsyncStorage } from './loadFromAsyncStorage';
@@ -8,6 +9,8 @@ export const syncAsyncStorageToFirestore = async () => {
   const user = await getUser();
   const id = user?.email || user?.uid;
   const appCollection = app?.toLocaleLowerCase();
+
+  Logger.info('Starting sync of AsyncStorage data to Firestore', { app, userId: id }, { tag: 'Firestore', timestamp: true });
 
   try {
     // Retrieve current data from AsyncStorage
@@ -27,23 +30,10 @@ export const syncAsyncStorageToFirestore = async () => {
       .doc(id)
       .set(mergedData, { merge: true });
 
-    console.log('Synced AsyncStorage data to Firestore.');
+    Logger.info('Successfully synced AsyncStorage data to Firestore.', null, { tag: 'Firestore', timestamp: true });
 
-  } catch (error) {
-    console.error("RNNN Error synchronizing data", error);
-    console.log(`Please ensure you have the following Firestore rules set up:
-
-      rules_version = '2';
-      service cloud.firestore {
-        match /databases/{database}/documents {
-
-          // Dynamic Rules for any appCollection
-          match /{appCollection}/{id} {
-            allow read, write: if request.auth != null && 
-                              (request.auth.token.email == id || request.auth.token.uid == id);
-          }
-        }
-      }
-      `);
+  } catch (error:any) {
+    Logger.error('Error occurred during sync of AsyncStorage to Firestore', error, { tag: 'Firestore', timestamp: true });
+    Logger.warn(`Please ensure you have the correct Firestore rules set up.`, null, { tag: 'Firestore', timestamp: true });
   }
 }

@@ -14,20 +14,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUser = void 0;
 const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
+const rn_logging_1 = require("rn-logging");
 function getUser() {
     return __awaiter(this, void 0, void 0, function* () {
+        const storageKey = 'user';
         try {
-            const userString = yield async_storage_1.default.getItem('user');
+            const userString = yield async_storage_1.default.getItem(storageKey);
             if (userString !== null) {
+                rn_logging_1.Logger.info('Successfully retrieved user from storage', JSON.parse(userString), { tag: 'User' });
                 return JSON.parse(userString);
             }
             else {
-                console.log("No user data found.");
+                rn_logging_1.Logger.info('No user data found in storage.', null, { tag: 'User' });
                 return null;
             }
         }
         catch (e) {
-            console.error("RNN Failed to get user from storage:", e);
+            rn_logging_1.Logger.error('Failed to get user from storage', e, { tag: 'User' });
             return null;
         }
     });

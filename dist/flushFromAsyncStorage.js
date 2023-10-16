@@ -15,15 +15,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.flushFromAsyncStorage = void 0;
 const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
 const getStorageKey_1 = require("./utils/getStorageKey");
+const rn_logging_1 = require("rn-logging");
 const flushFromAsyncStorage = () => __awaiter(void 0, void 0, void 0, function* () {
     const storageKey = yield (0, getStorageKey_1.getStorageKey)();
-    console.log(`Try to remove storageKey : ${storageKey} from AsyncStorage`);
+    rn_logging_1.Logger.info('Attempting to remove storageKey from AsyncStorage', { storageKey }, { tag: 'Storage' });
     try {
         yield async_storage_1.default.removeItem(storageKey);
-        console.log('Data successfully removed from AsyncStorage');
+        rn_logging_1.Logger.info('Data successfully removed from AsyncStorage', { storageKey }, { tag: 'Storage' });
     }
     catch (error) {
-        console.error("An error occurred:", error.message);
+        rn_logging_1.Logger.error('Error occurred while removing data from AsyncStorage', error, { tag: 'Storage' });
     }
 });
 exports.flushFromAsyncStorage = flushFromAsyncStorage;

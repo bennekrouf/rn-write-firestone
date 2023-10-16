@@ -1,16 +1,17 @@
 import firebase from '@react-native-firebase/app';
+import { Logger } from 'rn-logging';
 
 export const customInitializeFirebase = (firebaseConfig:any) => {
   try {
     if (!firebase.apps.length) {
-      console.log(`RN Init firebase app with : ${firebaseConfig}`);
+      Logger.info('Initializing firebase app', firebaseConfig, { tag: 'RN' });
       return firebase.initializeApp(firebaseConfig);
     } else {
-      console.log(`RN Found firebase app : ${JSON.stringify(firebase.apps)}`);
+      Logger.info('Firebase app already initialized', { existingApps: firebase.apps }, { tag: 'RN' });
       return firebase.app();
     }
   } catch (error) {
-    console.log(`RN Init firebase app ERROR : ${error}`);
+    Logger.error('Error initializing firebase app', error, { tag: 'RN' });
     return error; 
   }
 };

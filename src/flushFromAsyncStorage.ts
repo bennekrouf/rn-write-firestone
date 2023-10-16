@@ -1,15 +1,16 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { getStorageKey } from './utils/getStorageKey';
+import { Logger } from 'rn-logging';
 
 export const flushFromAsyncStorage = async () => {
   const storageKey = await getStorageKey();
 
-  console.log(`Try to remove storageKey : ${storageKey} from AsyncStorage`);
+  Logger.info('Attempting to remove storageKey from AsyncStorage', { storageKey }, { tag: 'Storage' });
 
   try {
     await AsyncStorage.removeItem(storageKey);
-    console.log('Data successfully removed from AsyncStorage');
+    Logger.info('Data successfully removed from AsyncStorage', { storageKey }, { tag: 'Storage' });
   } catch (error: any) {
-    console.error("An error occurred:", error.message);
+    Logger.error('Error occurred while removing data from AsyncStorage', error, { tag: 'Storage' });
   }
 }

@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.syncAsyncStorageToFirestore = void 0;
 const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
+const rn_logging_1 = require("rn-logging");
 const getUser_1 = require("./getUser");
 const getAppName_1 = require("./utils/getAppName");
 const loadFromAsyncStorage_1 = require("./loadFromAsyncStorage");
@@ -22,6 +23,7 @@ const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, func
     const user = yield (0, getUser_1.getUser)();
     const id = (user === null || user === void 0 ? void 0 : user.email) || (user === null || user === void 0 ? void 0 : user.uid);
     const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
+    rn_logging_1.Logger.info('Starting sync of AsyncStorage data to Firestore', { app, userId: id }, { tag: 'Firestore', timestamp: true });
     try {
         // Retrieve current data from AsyncStorage
         const existingDataString = yield (0, loadFromAsyncStorage_1.loadFromAsyncStorage)();
@@ -36,24 +38,11 @@ const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, func
             .collection(appCollection)
             .doc(id)
             .set(mergedData, { merge: true });
-        console.log('Synced AsyncStorage data to Firestore.');
+        rn_logging_1.Logger.info('Successfully synced AsyncStorage data to Firestore.', null, { tag: 'Firestore', timestamp: true });
     }
     catch (error) {
-        console.error("RNNN Error synchronizing data", error);
-        console.log(`Please ensure you have the following Firestore rules set up:
-
-      rules_version = '2';
-      service cloud.firestore {
-        match /databases/{database}/documents {
-
-          // Dynamic Rules for any appCollection
-          match /{appCollection}/{id} {
-            allow read, write: if request.auth != null && 
-                              (request.auth.token.email == id || request.auth.token.uid == id);
-          }
-        }
-      }
-      `);
+        rn_logging_1.Logger.error('Error occurred during sync of AsyncStorage to Firestore', error, { tag: 'Firestore', timestamp: true });
+        rn_logging_1.Logger.warn(`Please ensure you have the correct Firestore rules set up.`, null, { tag: 'Firestore', timestamp: true });
     }
 });
 exports.syncAsyncStorageToFirestore = syncAsyncStorageToFirestore;

@@ -14,16 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeToAsyncStorage = void 0;
 const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
+const rn_logging_1 = require("rn-logging");
 const getStorageKey_1 = require("./utils/getStorageKey");
 const writeToAsyncStorage = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const storageKey = yield (0, getStorageKey_1.getStorageKey)();
-    console.log(`Try to persist storageKey : ${storageKey} Value : ${JSON.stringify(data)}`);
+    rn_logging_1.Logger.info('Attempting to persist data to AsyncStorage', { storageKey, data }, { tag: 'AsyncStorage', timestamp: true });
     try {
         yield async_storage_1.default.setItem(storageKey[data], JSON.stringify(data));
-        console.log('Data successfully saved to AsyncStorage');
+        rn_logging_1.Logger.info('Data successfully saved to AsyncStorage', null, { tag: 'AsyncStorage', timestamp: true });
     }
     catch (error) {
-        console.error("An error occurred:", error.message);
+        rn_logging_1.Logger.error('Error occurred while saving data to AsyncStorage', error, { tag: 'AsyncStorage', timestamp: true });
     }
 });
 exports.writeToAsyncStorage = writeToAsyncStorage;
