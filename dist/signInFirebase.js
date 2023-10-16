@@ -19,6 +19,7 @@ const rn_logging_1 = require("rn-logging");
 const customInitializeFirebase_1 = require("./customInitializeFirebase");
 const writeToFirebase_1 = require("./writeToFirebase");
 const signInFirebase = (firebaseConfig, googleCredential) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
         rn_logging_1.Logger.info('Attempting Firebase sign-in', { firebaseConfig }, { tag: 'Firebase', timestamp: true });
         (0, customInitializeFirebase_1.customInitializeFirebase)(firebaseConfig);
@@ -27,7 +28,10 @@ const signInFirebase = (firebaseConfig, googleCredential) => __awaiter(void 0, v
         // Save user to AsyncStorage
         yield async_storage_1.default.setItem('user', JSON.stringify(firebaseUserCredential.user));
         rn_logging_1.Logger.info('Set last connection data in AsyncStorage', { user: firebaseUserCredential.user }, { tag: 'Firebase', timestamp: true });
-        const res = (0, writeToFirebase_1.writeToFirebase)({ lastConnectionDate: new Date() }, true);
+        const res = yield (0, writeToFirebase_1.writeToFirebase)({
+            lastConnectionDate: new Date(),
+            email: (_a = firebaseUserCredential.user) === null || _a === void 0 ? void 0 : _a.email
+        }, true);
         rn_logging_1.Logger.info('Write to Firebase', { result: res }, { tag: 'Firebase', timestamp: true });
         return firebaseUserCredential.user;
     }

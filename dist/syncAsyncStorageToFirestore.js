@@ -18,10 +18,12 @@ const rn_logging_1 = require("rn-logging");
 const getUser_1 = require("./getUser");
 const getAppName_1 = require("./utils/getAppName");
 const loadFromAsyncStorage_1 = require("./loadFromAsyncStorage");
+const getStorageKey_1 = require("./utils/getStorageKey");
 const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, function* () {
+    const storageKey = yield (0, getStorageKey_1.getStorageKey)();
     const app = (0, getAppName_1.getAppName)();
     const user = yield (0, getUser_1.getUser)();
-    const id = (user === null || user === void 0 ? void 0 : user.email) || (user === null || user === void 0 ? void 0 : user.uid);
+    const id = user === null || user === void 0 ? void 0 : user.uid;
     const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
     rn_logging_1.Logger.info('Starting sync of AsyncStorage data to Firestore', { app, userId: id }, { tag: 'Firestore', timestamp: true });
     try {
