@@ -3,11 +3,14 @@ import { Logger } from 'rn-logging';
 import {getUser} from './getUser';
 import { getAppName } from './utils/getAppName';
 import { loadFromAsyncStorage } from './loadFromAsyncStorage';
+import { getStorageKey } from './utils/getStorageKey';
 
 export const syncAsyncStorageToFirestore = async () => {
+  const storageKey = await getStorageKey();
+
   const app = getAppName();
   const user = await getUser();
-  const id = user?.email || user?.uid;
+  const id = user?.uid;
   const appCollection = app?.toLocaleLowerCase();
 
   Logger.info('Starting sync of AsyncStorage data to Firestore', { app, userId: id }, { tag: 'Firestore', timestamp: true });
