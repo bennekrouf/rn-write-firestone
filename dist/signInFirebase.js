@@ -15,23 +15,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.signInFirebase = void 0;
 const auth_1 = __importDefault(require("@react-native-firebase/auth"));
 const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
+const rn_logging_1 = require("rn-logging");
 const customInitializeFirebase_1 = require("./customInitializeFirebase");
 const writeToFirebase_1 = require("./writeToFirebase");
 const signInFirebase = (firebaseConfig, googleCredential) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log(`RN 1 - firebaseConfig : ${JSON.stringify(firebaseConfig)}`);
+        rn_logging_1.Logger.info('Attempting Firebase sign-in', { firebaseConfig }, { tag: 'Firebase', timestamp: true });
         (0, customInitializeFirebase_1.customInitializeFirebase)(firebaseConfig);
         // Sign in to Firebase
         const firebaseUserCredential = yield (0, auth_1.default)().signInWithCredential(googleCredential);
         // Save user to AsyncStorage
         yield async_storage_1.default.setItem('user', JSON.stringify(firebaseUserCredential.user));
-        console.log(`RN 2 - Set last connection data in AsyncStorage ${JSON.stringify(firebaseUserCredential.user)}`);
+        rn_logging_1.Logger.info('Set last connection data in AsyncStorage', { user: firebaseUserCredential.user }, { tag: 'Firebase', timestamp: true });
         const res = (0, writeToFirebase_1.writeToFirebase)({ lastConnectionDate: new Date() }, true);
-        console.log(`RN 3 - Write seems ok ${res}`);
+        rn_logging_1.Logger.info('Write to Firebase', { result: res }, { tag: 'Firebase', timestamp: true });
         return firebaseUserCredential.user;
     }
     catch (error) {
-        console.log('RN X - ERROR HE HO :', error);
+        rn_logging_1.Logger.error('Error occurred during Firebase sign-in', error, { tag: 'Firebase', timestamp: true });
         throw error;
     }
 });

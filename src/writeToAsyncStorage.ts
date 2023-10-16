@@ -1,21 +1,16 @@
 import AsyncStorage from '@react-native-community/async-storage';
-
-import { getAppName } from './getAppName';
-import {getKey} from './getKey';
+import { Logger } from 'rn-logging'; 
+import { getStorageKey } from './utils/getStorageKey';
 
 export const writeToAsyncStorage = async (data: any) => {
-  const app = getAppName();
-  const key = await getKey();
-  const appCollection = app?.toLocaleLowerCase();
+  const storageKey = await getStorageKey();
 
-  const storageKey = `${appCollection}:${key}`;  // Formulating a unique key
-
-  console.log(`Try to persist storageKey : ${storageKey} Value : ${JSON.stringify(data)}`);
+  Logger.info('Attempting to persist data to AsyncStorage', { storageKey, data }, { tag: 'AsyncStorage', timestamp: true });
 
   try {
-    await AsyncStorage.setItem(storageKey, JSON.stringify(data));
-    console.log('Data successfully saved to AsyncStorage');
+    await AsyncStorage.setItem(storageKey[data], JSON.stringify(data));
+    Logger.info('Data successfully saved to AsyncStorage', null, { tag: 'AsyncStorage', timestamp: true });
   } catch (error:any) {
-    console.error("An error occurred:", error.message);
+    Logger.error('Error occurred while saving data to AsyncStorage', error, { tag: 'AsyncStorage', timestamp: true });
   }
 }

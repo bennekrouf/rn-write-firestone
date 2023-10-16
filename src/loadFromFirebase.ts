@@ -1,12 +1,15 @@
 import firestore from '@react-native-firebase/firestore';
-
-import {getKey} from './getKey';
-import {getAppName} from './getAppName';
+import { Logger } from 'rn-logging'; 
+import { getStorageKey } from './utils/getStorageKey';
+import { getAppName } from './utils/getAppName';
 
 export const loadFromFirebase = async () => {
+  const key = await getStorageKey();
+
+  Logger.info('Attempting to load document from Firestore', null, { tag: 'Firestore', timestamp: true });
+
   try {
     const app = getAppName();
-    const key = await getKey();
     const appCollection = app?.toLocaleLowerCase();
 
     // Validate if appCollection and key are defined and non-empty.
@@ -18,16 +21,16 @@ export const loadFromFirebase = async () => {
     // Fetch document from Firestore
     const documentSnapshot = await firestore().collection(appCollection).doc(key).get();
 
-    // If the document exists, return its data. Else, log and return undefined.
+    // If the document exists, return its data. Else, return undefined or a default value.
     if (documentSnapshot.exists) {
+      Logger.info('Document successfully retrieved from Firestore', documentSnapshot.data(), { tag: 'Firestore', timestamp: true });
       return documentSnapshot.data();
     } else {
-      console.log('[INFO] ' + new Date().toISOString() + ' - loadFromFirebase: No document found for key [' + key + '] in collection [' + appCollection + '].');
-      return undefined;
+      Logger.warn('No document found for the given key in the specified appCollection.', null, { tag: 'Firestore', timestamp: true });
+      return undefined; // or any default value you'd like to return
     }
   } catch (error:any) {
-    console.error('[ERROR] ' + new Date().toISOString() + ' - loadFromFirebase Error:', error.message);
-    console.info('[INFO] ' + new Date().toISOString() + ' - Please ensure you have the appropriate Firestore rules set up and the document/key exists.');
-    throw error; // Propagate the error further for potentially being caught by an error boundary or calling function.
+    Logger.error('Failed to load document from Firestore', error, { tag: 'Firestore', timestamp: true });
+    Logger.warn('Please ensure you have the appropriate Firestore rules set up and the document/key exists.', null, { tag: 'Firestore', timestamp: true });
   }
 }

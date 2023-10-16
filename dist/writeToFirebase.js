@@ -14,32 +14,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeToFirebase = void 0;
 const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
-const getKey_1 = require("./getKey");
-const getAppName_1 = require("./getAppName");
+const rn_logging_1 = require("rn-logging");
+const getKey_1 = require("./utils/getKey");
+const getAppName_1 = require("./utils/getAppName");
 const writeToFirebase = (data, merge = true) => __awaiter(void 0, void 0, void 0, function* () {
     const app = (0, getAppName_1.getAppName)();
     const key = yield (0, getKey_1.getKey)();
     const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
-    console.log(`Try to persist appCollection : ${appCollection} key : ${key} Value : ${JSON.stringify(data)}`);
+    rn_logging_1.Logger.info('Attempting to persist data to Firestore', { appCollection, key, data, mergeOption: merge }, { tag: 'Firestore', timestamp: true });
     try {
         return (0, firestore_1.default)().collection(appCollection).doc(key).set(data, { merge });
     }
     catch (error) {
-        console.error("An error occurred:", error.message);
-        console.log(`Please ensure you have the following Firestore rules set up:
-
-      rules_version = '2';
-      service cloud.firestore {
-        match /databases/{database}/documents {
-
-          // Dynamic Rules for any appCollection
-          match /{appCollection}/{id} {
-            allow read, write: if request.auth != null && 
-                              (request.auth.token.email == id || request.auth.token.uid == id);
+        rn_logging_1.Logger.error('Error occurred while saving data to Firestore', error, { tag: 'Firestore', timestamp: true });
+        rn_logging_1.Logger.warn(`Please ensure you have the following Firestore rules set up:
+        rules_version = '2';
+        service cloud.firestore {
+          match /databases/{database}/documents {
+            // Dynamic Rules for any appCollection
+            match /{appCollection}/{id} {
+              allow read, write: if request.auth != null && 
+                                (request.auth.token.email == id || request.auth.token.uid == id);
+            }
           }
-        }
-      }
-      `);
+        }`, null, { tag: 'Firestore', timestamp: true });
     }
 });
 exports.writeToFirebase = writeToFirebase;

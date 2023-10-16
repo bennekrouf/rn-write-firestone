@@ -14,27 +14,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadFromAsyncStorage = void 0;
 const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
-const getKey_1 = require("./getKey");
-const getAppName_1 = require("./getAppName");
+const rn_logging_1 = require("rn-logging");
+const getStorageKey_1 = require("./utils/getStorageKey");
 const loadFromAsyncStorage = () => __awaiter(void 0, void 0, void 0, function* () {
-    const app = (0, getAppName_1.getAppName)();
-    const key = yield (0, getKey_1.getKey)();
-    const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
-    const storageKey = `${appCollection}:${key}`;
     try {
-        console.log(`RN Loading from AsyncStorage with key : ${storageKey}`);
+        const storageKey = yield (0, getStorageKey_1.getStorageKey)();
+        rn_logging_1.Logger.info('Attempting to load data from AsyncStorage', null, { tag: 'Storage', timestamp: true });
         const dataString = yield async_storage_1.default.getItem(storageKey);
         if (dataString) {
+            rn_logging_1.Logger.info('Data successfully retrieved from AsyncStorage', JSON.parse(dataString), { tag: 'Storage', timestamp: true });
             return JSON.parse(dataString); // Convert string back to object
         }
         else {
-            console.log('No data found for the given storageKey in AsyncStorage.');
+            rn_logging_1.Logger.warn('No data found for the given storageKey in AsyncStorage.', null, { tag: 'Storage', timestamp: true });
             return undefined; // or any default value you'd like to return
         }
     }
     catch (error) {
-        console.error("An error occurred:", error.message);
-        console.log("Please ensure you have read/write permissions for AsyncStorage and the key exists.");
+        rn_logging_1.Logger.error('Failed to load data from AsyncStorage', error, { tag: 'Storage', timestamp: true });
+        rn_logging_1.Logger.warn('Please ensure you have read/write permissions for AsyncStorage and the key exists.', null, { tag: 'Storage', timestamp: true });
     }
 });
 exports.loadFromAsyncStorage = loadFromAsyncStorage;

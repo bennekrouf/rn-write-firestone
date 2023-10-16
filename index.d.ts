@@ -16,10 +16,12 @@ declare module 'rn-write-firestore' {
     ): Promise<User>;
 
     export function writeToFirebase(data: any, merge?: boolean): Promise<User | null>;
-    export function loadFromFirebase(): Promise<User | null>;
+    export function loadFromFirebase(): Promise<any | null>;
     export function writeToAsyncStorage(data: any, merge?: boolean): Promise<User | null>;
-    export function loadFromAsyncStorage(): Promise<User | null>;
+    export function loadFromAsyncStorage(): Promise<any | null>;
     export function syncAsyncStorageToFirestore(): Promise<null>;
+    export function flushFromAsyncStorage(): Promise<null>;
+    
     export function getUser(): Promise<User | null>;
   }
   

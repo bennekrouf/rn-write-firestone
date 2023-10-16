@@ -1,6 +1,6 @@
 {
-  "name": "rn-write-firestone",
-  "version": "1.0.33",
+  "name": "rn-write-firestore",
+  "version": "1.0.39",
   "main": "dist/index.js",
   "license": "MIT",
   "author": "Mohamed Bennekrouf",
@@ -11,14 +11,15 @@
     "@react-native-firebase/app": "^18.5.0",
     "@react-native-firebase/auth": "^18.5.0",
     "@react-native-firebase/firestore": "^18.5.0",
-    "react-native-device-info": "^10.11.0"
+    "react-native-device-info": "^10.11.0",
+    "rn-logging": "^1.0.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.21",
     "@types/react-native": "^0.72.2",
+    "react": "18.2.0",
     "react-native": "^0.72.5",
-    "typescript": "^5.2.2",
-    "react": "18.2.0"
+    "typescript": "^5.2.2"
   },
   "peerDependencies": {
     "react-native": "^0.59.0 || ^1000.0.0",
