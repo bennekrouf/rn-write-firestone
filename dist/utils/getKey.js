@@ -13,6 +13,6 @@ exports.getKey = void 0;
 const getUser_1 = require("../getUser");
 const getKey = () => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield (0, getUser_1.getUser)();
-    return `${(user === null || user === void 0 ? void 0 : user.email) || user.uid}`;
+    return `${user.uid}`;
 });
 exports.getKey = getKey;
