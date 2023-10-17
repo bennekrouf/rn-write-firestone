@@ -18,8 +18,7 @@ export const syncAsyncStorageToFirestore = async () => {
   try {
     // Retrieve current data from AsyncStorage
     let existingDataString = await loadFromAsyncStorage();
-    existingDataString = JSON.parse(existingDataString);
-    const asyncStorageData = existingDataString ? JSON.stringify(existingDataString) : {};
+    const asyncStorageData = existingDataString || {};
 
     // Retrieve current data from firestore
     const documentSnapshot = await firestore().collection(appCollection).doc(id).get();
