@@ -29,7 +29,7 @@ const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, func
     try {
         // Retrieve current data from AsyncStorage
         let existingDataString = yield (0, loadFromAsyncStorage_1.loadFromAsyncStorage)();
-        existingDataString = JSON.parse(JSON.parse(existingDataString));
+        existingDataString = JSON.parse(existingDataString);
         const asyncStorageData = existingDataString ? JSON.stringify(existingDataString) : {};
         // Retrieve current data from firestore
         const documentSnapshot = yield (0, firestore_1.default)().collection(appCollection).doc(id).get();
