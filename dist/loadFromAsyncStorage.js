@@ -19,14 +19,14 @@ const getStorageKey_1 = require("./utils/getStorageKey");
 const loadFromAsyncStorage = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const storageKey = yield (0, getStorageKey_1.getStorageKey)();
-        rn_logging_1.Logger.info('Attempting to load data from AsyncStorage', null, { tag: 'Storage', timestamp: true });
+        rn_logging_1.Logger.info('Attempting to load data from AsyncStorage : ', storageKey, { tag: 'Storage', timestamp: true });
         const dataString = yield async_storage_1.default.getItem(storageKey);
         if (dataString) {
             rn_logging_1.Logger.info('Data successfully retrieved from AsyncStorage', JSON.parse(dataString), { tag: 'Storage', timestamp: true });
             return JSON.parse(dataString); // Convert string back to object
         }
         else {
-            rn_logging_1.Logger.warn('No data found for the given storageKey in AsyncStorage.', null, { tag: 'Storage', timestamp: true });
+            rn_logging_1.Logger.warn('No data found for the given storageKey in AsyncStorage.', storageKey, { tag: 'Storage', timestamp: true });
             return undefined; // or any default value you'd like to return
         }
     }

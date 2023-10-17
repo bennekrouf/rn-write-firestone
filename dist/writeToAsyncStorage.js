@@ -20,7 +20,7 @@ const writeToAsyncStorage = (data) => __awaiter(void 0, void 0, void 0, function
     const storageKey = yield (0, getStorageKey_1.getStorageKey)();
     rn_logging_1.Logger.info('Attempting to persist data to AsyncStorage', { storageKey, data }, { tag: 'AsyncStorage', timestamp: true });
     try {
-        yield async_storage_1.default.setItem(storageKey[data], JSON.stringify(data));
+        yield async_storage_1.default.setItem(storageKey, JSON.stringify(data));
         rn_logging_1.Logger.info('Data successfully saved to AsyncStorage', null, { tag: 'AsyncStorage', timestamp: true });
     }
     catch (error) {
