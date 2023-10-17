@@ -6,14 +6,14 @@ export const loadFromAsyncStorage = async () => {
   try {
     const storageKey = await getStorageKey();
 
-    Logger.info('Attempting to load data from AsyncStorage', null, { tag: 'Storage', timestamp: true });
+    Logger.info('Attempting to load data from AsyncStorage : ', storageKey, { tag: 'Storage', timestamp: true });
     const dataString = await AsyncStorage.getItem(storageKey);
 
     if (dataString) {
       Logger.info('Data successfully retrieved from AsyncStorage', JSON.parse(dataString), { tag: 'Storage', timestamp: true });
       return JSON.parse(dataString);  // Convert string back to object
     } else {
-      Logger.warn('No data found for the given storageKey in AsyncStorage.', null, { tag: 'Storage', timestamp: true });
+      Logger.warn('No data found for the given storageKey in AsyncStorage.', storageKey, { tag: 'Storage', timestamp: true });
       return undefined;  // or any default value you'd like to return
     }
   } catch (error:any) {
