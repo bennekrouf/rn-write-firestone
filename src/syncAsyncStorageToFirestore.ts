@@ -31,7 +31,7 @@ export const syncAsyncStorageToFirestore = async () => {
     await firestore()
       .collection(appCollection)
       .doc(id)
-      .set(mergedData, { merge: true });
+      .set({data: mergedData}, { merge: true });
 
     Logger.info('Successfully synced AsyncStorage data to Firestore.', null, { tag: 'Firestore', timestamp: true });
 

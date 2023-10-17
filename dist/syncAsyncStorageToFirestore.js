@@ -39,7 +39,7 @@ const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, func
         yield (0, firestore_1.default)()
             .collection(appCollection)
             .doc(id)
-            .set(mergedData, { merge: true });
+            .set({ data: mergedData }, { merge: true });
         rn_logging_1.Logger.info('Successfully synced AsyncStorage data to Firestore.', null, { tag: 'Firestore', timestamp: true });
     }
     catch (error) {
