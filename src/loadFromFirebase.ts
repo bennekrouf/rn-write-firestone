@@ -5,11 +5,19 @@ import { getAppName } from './utils/getAppName';
 
 export const loadFromFirebase = async () => {
   const key = await getStorageKey();
-  const appCollection = getAppName()?.toLocaleLowerCase();
 
   Logger.info('Attempting to load document from Firestore', null, { tag: 'Firestore', timestamp: true });
 
   try {
+    const app = getAppName();
+    const appCollection = app?.toLocaleLowerCase();
+
+    // Validate if appCollection and key are defined and non-empty.
+    if (!appCollection || !key) {
+      console.warn('[WARNING] ' + new Date().toISOString() + ' - loadFromFirebase: appCollection or key is undefined or empty.');
+      return undefined;
+    }
+
     // Fetch document from Firestore
     const documentSnapshot = await firestore().collection(appCollection).doc(key).get();
 

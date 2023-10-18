@@ -18,11 +18,16 @@ const rn_logging_1 = require("rn-logging");
 const getStorageKey_1 = require("./utils/getStorageKey");
 const getAppName_1 = require("./utils/getAppName");
 const loadFromFirebase = () => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     const key = yield (0, getStorageKey_1.getStorageKey)();
-    const appCollection = (_a = (0, getAppName_1.getAppName)()) === null || _a === void 0 ? void 0 : _a.toLocaleLowerCase();
     rn_logging_1.Logger.info('Attempting to load document from Firestore', null, { tag: 'Firestore', timestamp: true });
     try {
+        const app = (0, getAppName_1.getAppName)();
+        const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
+        // Validate if appCollection and key are defined and non-empty.
+        if (!appCollection || !key) {
+            console.warn('[WARNING] ' + new Date().toISOString() + ' - loadFromFirebase: appCollection or key is undefined or empty.');
+            return undefined;
+        }
         // Fetch document from Firestore
         const documentSnapshot = yield (0, firestore_1.default)().collection(appCollection).doc(key).get();
         // If the document exists, return its data. Else, return undefined or a default value.

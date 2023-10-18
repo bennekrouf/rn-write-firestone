@@ -17,7 +17,11 @@ export const signInFirebase = async (firebaseConfig:any, googleCredential:any) =
     await AsyncStorage.setItem('user', JSON.stringify(firebaseUserCredential.user));
     Logger.info('Set last connection data in AsyncStorage', { user: firebaseUserCredential.user }, { tag: 'Firebase', timestamp: true });
 
-    const res = writeToFirebase({lastConnectionDate: new Date()}, true);
+    const res = await writeToFirebase({
+      lastConnectionDate: new Date(),
+      email: firebaseUserCredential.user?.email
+    
+    }, true);
     Logger.info('Write to Firebase', { result: res }, { tag: 'Firebase', timestamp: true });
 
     return firebaseUserCredential.user;

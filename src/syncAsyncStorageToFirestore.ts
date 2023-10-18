@@ -3,19 +3,22 @@ import { Logger } from 'rn-logging';
 import {getUser} from './getUser';
 import { getAppName } from './utils/getAppName';
 import { loadFromAsyncStorage } from './loadFromAsyncStorage';
+import { getStorageKey } from './utils/getStorageKey';
 
 export const syncAsyncStorageToFirestore = async () => {
+  const storageKey = await getStorageKey();
+
   const app = getAppName();
   const user = await getUser();
-  const id = user?.email || user?.uid;
+  const id = user?.uid;
   const appCollection = app?.toLocaleLowerCase();
 
   Logger.info('Starting sync of AsyncStorage data to Firestore', { app, userId: id }, { tag: 'Firestore', timestamp: true });
 
   try {
     // Retrieve current data from AsyncStorage
-    const existingDataString = await loadFromAsyncStorage();
-    const asyncStorageData = existingDataString ? JSON.stringify(existingDataString) : {};
+    let existingDataString = await loadFromAsyncStorage();
+    const asyncStorageData = existingDataString || {};
 
     // Retrieve current data from firestore
     const documentSnapshot = await firestore().collection(appCollection).doc(id).get();
@@ -28,7 +31,7 @@ export const syncAsyncStorageToFirestore = async () => {
     await firestore()
       .collection(appCollection)
       .doc(id)
-      .set(mergedData, { merge: true });
+      .set({data: mergedData}, { merge: true });
 
     Logger.info('Successfully synced AsyncStorage data to Firestore.', null, { tag: 'Firestore', timestamp: true });
 
