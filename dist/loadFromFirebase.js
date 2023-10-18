@@ -15,21 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadFromFirebase = void 0;
 const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
 const rn_logging_1 = require("rn-logging");
-const getStorageKey_1 = require("./utils/getStorageKey");
-const getAppName_1 = require("./utils/getAppName");
+const getStorageDetails_1 = require("./utils/getStorageDetails");
 const loadFromFirebase = () => __awaiter(void 0, void 0, void 0, function* () {
-    const key = yield (0, getStorageKey_1.getStorageKey)();
-    rn_logging_1.Logger.info('Attempting to load document from Firestore', null, { tag: 'rn-write-firestore' });
+    const details = yield (0, getStorageDetails_1.getStorageDetails)();
+    rn_logging_1.Logger.info('Attempting to load document from Firestore with key', { key: details.firestoreKey }, { tag: 'rn-write-firestore' });
     try {
-        const app = (0, getAppName_1.getAppName)();
-        const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
         // Validate if appCollection and key are defined and non-empty.
-        if (!appCollection || !key) {
-            console.warn('[WARNING] ' + new Date().toISOString() + ' - loadFromFirebase: appCollection or key is undefined or empty.');
+        if (!details.collection || !details.firestoreKey) {
+            rn_logging_1.Logger.warn(`appCollection or key is undefined or empty.`);
             return undefined;
         }
         // Fetch document from Firestore
-        const documentSnapshot = yield (0, firestore_1.default)().collection(appCollection).doc(key).get();
+        const documentSnapshot = yield (0, firestore_1.default)().collection(details.collection).doc(details.firestoreKey).get();
         // If the document exists, return its data. Else, return undefined or a default value.
         if (documentSnapshot.exists) {
             rn_logging_1.Logger.info('Document successfully retrieved from Firestore', documentSnapshot.data(), { tag: 'rn-write-firestore' });

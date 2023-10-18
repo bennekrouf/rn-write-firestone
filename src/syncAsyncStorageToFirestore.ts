@@ -1,20 +1,11 @@
 import firestore from '@react-native-firebase/firestore';
 import { Logger } from 'rn-logging'; 
-import {getUser} from './getUser';
-import { getAppName } from './utils/getAppName';
 import { loadFromAsyncStorage } from './loadFromAsyncStorage';
-import { getStorageKey } from './utils/getStorageKey';
+import { getStorageDetails } from './utils/getStorageDetails';
 
 export const syncAsyncStorageToFirestore = async () => {
-  const storageKey = await getStorageKey();
-  Logger.info('Storage key value', { storageKey }, { tag: 'rn-write-firestore'});
- 
-  const app = getAppName();
-  const user = await getUser();
-  const id = user?.uid;
-  const appCollection = app?.toLocaleLowerCase();
-
-  Logger.info('Starting sync of AsyncStorage data to Firestore', { app, userId: id }, { tag: 'rn-write-firestore'});
+  const details = await getStorageDetails();
+  Logger.info('Starting sync of AsyncStorage data to Firestore', { key: details.asyncStorageKey }, { tag: 'rn-write-firestore'});
 
   try {
     // Retrieve current data from AsyncStorage
@@ -22,7 +13,7 @@ export const syncAsyncStorageToFirestore = async () => {
     const asyncStorageData = existingDataString || {};
 
     // Retrieve current data from firestore
-    const documentSnapshot = await firestore().collection(appCollection).doc(id).get();
+    const documentSnapshot = await firestore().collection(details.collection).doc(details.firestoreKey).get();
     const firestoreData = documentSnapshot.exists ? documentSnapshot.data() : {};
 
     // Merge firestore data with AsyncStorage data (with AsyncStorage data taking precedence)
@@ -32,8 +23,8 @@ export const syncAsyncStorageToFirestore = async () => {
 
     // Write the merged data back to firestore
     await firestore()
-      .collection(appCollection)
-      .doc(id)
+      .collection(details.collection)
+      .doc(details.firestoreKey)
       .set({data: mergedData}, { merge: true });
 
     Logger.info('Successfully synced AsyncStorage data to Firestore.', null, { tag: 'rn-write-firestore'});

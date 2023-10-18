@@ -36,7 +36,7 @@ const signInFirebase = (firebaseConfig, googleCredential) => __awaiter(void 0, v
         return firebaseUserCredential.user;
     }
     catch (error) {
-        rn_logging_1.Logger.error('Error occurred during Firebase sign-in', error, { tag: 'rn-write-firestore', timestamp: true });
+        rn_logging_1.Logger.error('Error occurred during Firebase sign-in', error, { tag: 'rn-write-firestore' });
         throw error;
     }
 });
