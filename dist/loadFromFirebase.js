@@ -17,6 +17,7 @@ const firestore_1 = __importDefault(require("@react-native-firebase/firestore"))
 const rn_logging_1 = require("rn-logging");
 const getStorageDetails_1 = require("./utils/getStorageDetails");
 const loadFromFirebase = () => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b;
     const details = yield (0, getStorageDetails_1.getStorageDetails)();
     rn_logging_1.Logger.info('Attempting to load document from Firestore with key', { key: details.firestoreKey }, { tag: 'rn-write-firestore' });
     try {
@@ -29,8 +30,8 @@ const loadFromFirebase = () => __awaiter(void 0, void 0, void 0, function* () {
         const documentSnapshot = yield (0, firestore_1.default)().collection(details.collection).doc(details.firestoreKey).get();
         // If the document exists, return its data. Else, return undefined or a default value.
         if (documentSnapshot.exists) {
-            rn_logging_1.Logger.info('Document successfully retrieved from Firestore', documentSnapshot.data(), { tag: 'rn-write-firestore' });
-            return documentSnapshot.data();
+            rn_logging_1.Logger.info('Document successfully retrieved from Firestore', (_a = documentSnapshot.data()) === null || _a === void 0 ? void 0 : _a.data, { tag: 'rn-write-firestore' });
+            return (_b = documentSnapshot.data()) === null || _b === void 0 ? void 0 : _b.data;
         }
         else {
             rn_logging_1.Logger.warn('No document found for the given key in the specified appCollection.', null, { tag: 'rn-write-firestore' });

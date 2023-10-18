@@ -11,7 +11,7 @@ export const loadFromAsyncStorage = async () => {
 
     if (dataString) {
       Logger.info('Data successfully retrieved from AsyncStorage', JSON.parse(dataString), { tag: 'rn-write-firestore' });
-      return JSON.parse(dataString);  // Convert string back to object
+      return JSON.parse(dataString)?.data;  // Convert string back to object
     } else {
       Logger.warn('No data found for the given storageKey in AsyncStorage.', details.asyncStorageKey, { tag: 'rn-write-firestore' });
       return undefined;  // or any default value you'd like to return

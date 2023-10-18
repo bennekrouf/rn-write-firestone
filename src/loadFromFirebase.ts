@@ -18,8 +18,8 @@ export const loadFromFirebase = async () => {
 
     // If the document exists, return its data. Else, return undefined or a default value.
     if (documentSnapshot.exists) {
-      Logger.info('Document successfully retrieved from Firestore', documentSnapshot.data(), { tag: 'rn-write-firestore'});
-      return documentSnapshot.data();
+      Logger.info('Document successfully retrieved from Firestore', documentSnapshot.data()?.data, { tag: 'rn-write-firestore'});
+      return documentSnapshot.data()?.data;
     } else {
       Logger.warn('No document found for the given key in the specified appCollection.', null, { tag: 'rn-write-firestore'});
       return undefined; // or any default value you'd like to return

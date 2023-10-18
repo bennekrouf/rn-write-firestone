@@ -17,13 +17,14 @@ const async_storage_1 = __importDefault(require("@react-native-community/async-s
 const rn_logging_1 = require("rn-logging");
 const getStorageDetails_1 = require("./utils/getStorageDetails");
 const loadFromAsyncStorage = () => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
         const details = yield (0, getStorageDetails_1.getStorageDetails)();
         rn_logging_1.Logger.info('Attempting to load data from AsyncStorage : ', details, { tag: 'rn-write-firestore' });
         const dataString = yield async_storage_1.default.getItem(details.asyncStorageKey);
         if (dataString) {
             rn_logging_1.Logger.info('Data successfully retrieved from AsyncStorage', JSON.parse(dataString), { tag: 'rn-write-firestore' });
-            return JSON.parse(dataString); // Convert string back to object
+            return (_a = JSON.parse(dataString)) === null || _a === void 0 ? void 0 : _a.data; // Convert string back to object
         }
         else {
             rn_logging_1.Logger.warn('No data found for the given storageKey in AsyncStorage.', details.asyncStorageKey, { tag: 'rn-write-firestore' });
