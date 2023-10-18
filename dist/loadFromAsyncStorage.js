@@ -20,7 +20,7 @@ const loadFromAsyncStorage = () => __awaiter(void 0, void 0, void 0, function* (
     var _a;
     try {
         const details = yield (0, getStorageDetails_1.getStorageDetails)();
-        rn_logging_1.Logger.info('Attempting to load data from AsyncStorage : ', details, { tag: 'rn-write-firestore' });
+        rn_logging_1.Logger.info('Attempting to load data from AsyncStorage : ', details.asyncStorageKey, { tag: 'rn-write-firestore' });
         const dataString = yield async_storage_1.default.getItem(details.asyncStorageKey);
         if (dataString) {
             rn_logging_1.Logger.info('Data successfully retrieved from AsyncStorage', JSON.parse(dataString), { tag: 'rn-write-firestore' });

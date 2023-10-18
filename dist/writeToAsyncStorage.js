@@ -20,7 +20,7 @@ const writeToAsyncStorage = (data) => __awaiter(void 0, void 0, void 0, function
     const details = yield (0, getStorageDetails_1.getStorageDetails)();
     rn_logging_1.Logger.info('Attempting to persist data to AsyncStorage', { key: details.asyncStorageKey, data }, { tag: 'rn-write-firestore' });
     try {
-        yield async_storage_1.default.setItem(details.asyncStorageKey, JSON.stringify(data));
+        yield async_storage_1.default.setItem(details.asyncStorageKey, JSON.stringify({ data: data }));
         rn_logging_1.Logger.info('Data successfully saved to AsyncStorage', null, { tag: 'rn-write-firestore' });
     }
     catch (error) {
