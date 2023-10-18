@@ -14,7 +14,7 @@ export const syncAsyncStorageToFirestore = async () => {
 
     // Retrieve current data from firestore
     const documentSnapshot = await firestore().collection(details.collection).doc(details.firestoreKey).get();
-    const firestoreData = documentSnapshot.exists ? documentSnapshot.data() : {};
+    const firestoreData = documentSnapshot.exists ? documentSnapshot.data()?.data : {};
 
     // Merge firestore data with AsyncStorage data (with AsyncStorage data taking precedence)
     const mergedData = { ...firestoreData, ...asyncStorageData, updatedAt: new Date() };

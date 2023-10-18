@@ -18,6 +18,7 @@ const rn_logging_1 = require("rn-logging");
 const loadFromAsyncStorage_1 = require("./loadFromAsyncStorage");
 const getStorageDetails_1 = require("./utils/getStorageDetails");
 const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const details = yield (0, getStorageDetails_1.getStorageDetails)();
     rn_logging_1.Logger.info('Starting sync of AsyncStorage data to Firestore', { key: details.asyncStorageKey }, { tag: 'rn-write-firestore' });
     try {
@@ -26,7 +27,7 @@ const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, func
         const asyncStorageData = existingDataString || {};
         // Retrieve current data from firestore
         const documentSnapshot = yield (0, firestore_1.default)().collection(details.collection).doc(details.firestoreKey).get();
-        const firestoreData = documentSnapshot.exists ? documentSnapshot.data() : {};
+        const firestoreData = documentSnapshot.exists ? (_a = documentSnapshot.data()) === null || _a === void 0 ? void 0 : _a.data : {};
         // Merge firestore data with AsyncStorage data (with AsyncStorage data taking precedence)
         const mergedData = Object.assign(Object.assign(Object.assign({}, firestoreData), asyncStorageData), { updatedAt: new Date() });
         rn_logging_1.Logger.info('Attempting to write merged data to Firestore...', { mergedData }, { tag: 'rn-write-firestore' });
