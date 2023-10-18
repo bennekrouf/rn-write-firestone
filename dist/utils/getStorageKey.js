@@ -12,10 +12,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getStorageKey = void 0;
 const getAppName_1 = require("./getAppName");
 const getKey_1 = require("./getKey");
+const rn_logging_1 = require("rn-logging");
 const getStorageKey = () => __awaiter(void 0, void 0, void 0, function* () {
-    const app = (0, getAppName_1.getAppName)();
-    const key = yield (0, getKey_1.getKey)();
-    const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
-    return `${appCollection}:${key}`; // Formulating a unique key
+    try {
+        rn_logging_1.Logger.info("Fetching application name...");
+        const app = (0, getAppName_1.getAppName)();
+        rn_logging_1.Logger.info("Fetching key...");
+        const key = yield (0, getKey_1.getKey)();
+        if (!app) {
+            rn_logging_1.Logger.warn("Application name not retrieved. It might be undefined or null.");
+        }
+        const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
+        const storageKey = `${appCollection}:${key}`;
+        rn_logging_1.Logger.info(`Constructed storage key: ${storageKey}`);
+        return storageKey;
+    }
+    catch (err) {
+        rn_logging_1.Logger.error("Failed to construct storage key:", err);
+        throw err;
+    }
 });
 exports.getStorageKey = getStorageKey;

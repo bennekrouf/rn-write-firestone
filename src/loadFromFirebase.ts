@@ -6,7 +6,7 @@ import { getAppName } from './utils/getAppName';
 export const loadFromFirebase = async () => {
   const key = await getStorageKey();
 
-  Logger.info('Attempting to load document from Firestore', null, { tag: 'Firestore', timestamp: true });
+  Logger.info('Attempting to load document from Firestore', null, { tag: 'rn-write-firestore'});
 
   try {
     const app = getAppName();
@@ -23,14 +23,14 @@ export const loadFromFirebase = async () => {
 
     // If the document exists, return its data. Else, return undefined or a default value.
     if (documentSnapshot.exists) {
-      Logger.info('Document successfully retrieved from Firestore', documentSnapshot.data(), { tag: 'Firestore', timestamp: true });
+      Logger.info('Document successfully retrieved from Firestore', documentSnapshot.data(), { tag: 'rn-write-firestore'});
       return documentSnapshot.data();
     } else {
-      Logger.warn('No document found for the given key in the specified appCollection.', null, { tag: 'Firestore', timestamp: true });
+      Logger.warn('No document found for the given key in the specified appCollection.', null, { tag: 'rn-write-firestore'});
       return undefined; // or any default value you'd like to return
     }
   } catch (error:any) {
-    Logger.error('Failed to load document from Firestore', error, { tag: 'Firestore', timestamp: true });
-    Logger.warn('Please ensure you have the appropriate Firestore rules set up and the document/key exists.', null, { tag: 'Firestore', timestamp: true });
+    Logger.error('Failed to load document from Firestore', error, { tag: 'rn-write-firestore'});
+    Logger.warn('Please ensure you have the appropriate Firestore rules set up and the document/key exists.', null, { tag: 'rn-write-firestore'});
   }
 }

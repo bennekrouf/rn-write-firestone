@@ -21,11 +21,12 @@ const loadFromAsyncStorage_1 = require("./loadFromAsyncStorage");
 const getStorageKey_1 = require("./utils/getStorageKey");
 const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, function* () {
     const storageKey = yield (0, getStorageKey_1.getStorageKey)();
+    rn_logging_1.Logger.info('Storage key value', { storageKey }, { tag: 'rn-write-firestore' });
     const app = (0, getAppName_1.getAppName)();
     const user = yield (0, getUser_1.getUser)();
     const id = user === null || user === void 0 ? void 0 : user.uid;
     const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
-    rn_logging_1.Logger.info('Starting sync of AsyncStorage data to Firestore', { app, userId: id }, { tag: 'Firestore', timestamp: true });
+    rn_logging_1.Logger.info('Starting sync of AsyncStorage data to Firestore', { app, userId: id }, { tag: 'rn-write-firestore' });
     try {
         // Retrieve current data from AsyncStorage
         let existingDataString = yield (0, loadFromAsyncStorage_1.loadFromAsyncStorage)();
@@ -35,16 +36,17 @@ const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, func
         const firestoreData = documentSnapshot.exists ? documentSnapshot.data() : {};
         // Merge firestore data with AsyncStorage data (with AsyncStorage data taking precedence)
         const mergedData = Object.assign(Object.assign(Object.assign({}, firestoreData), asyncStorageData), { updatedAt: new Date() });
+        rn_logging_1.Logger.info('Attempting to write merged data to Firestore...', { mergedData }, { tag: 'rn-write-firestore' });
         // Write the merged data back to firestore
         yield (0, firestore_1.default)()
             .collection(appCollection)
             .doc(id)
             .set({ data: mergedData }, { merge: true });
-        rn_logging_1.Logger.info('Successfully synced AsyncStorage data to Firestore.', null, { tag: 'Firestore', timestamp: true });
+        rn_logging_1.Logger.info('Successfully synced AsyncStorage data to Firestore.', null, { tag: 'rn-write-firestore' });
     }
     catch (error) {
-        rn_logging_1.Logger.error('Error occurred during sync of AsyncStorage to Firestore', error, { tag: 'Firestore', timestamp: true });
-        rn_logging_1.Logger.warn(`Please ensure you have the correct Firestore rules set up.`, null, { tag: 'Firestore', timestamp: true });
+        rn_logging_1.Logger.error('Error occurred during sync of AsyncStorage to Firestore', error, { tag: 'rn-write-firestore' });
+        rn_logging_1.Logger.warn(`Please ensure you have the correct Firestore rules set up.`, null, { tag: 'rn-write-firestore' });
     }
 });
 exports.syncAsyncStorageToFirestore = syncAsyncStorageToFirestore;
