@@ -1,7 +1,7 @@
 import firebase from '@react-native-firebase/app';
 import { Logger } from 'rn-logging';
 
-export const customInitializeFirebase = (firebaseConfig:any) => {
+export const customInitializeFirebase = async (firebaseConfig:any) => {
   try {
     if (!firebase.apps.length) {
       Logger.info('Initializing firebase app', firebaseConfig, { tag: 'RN' });

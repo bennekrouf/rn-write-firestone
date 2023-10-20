@@ -8,7 +8,7 @@ export const signInFirebase = async (firebaseConfig:any, googleCredential:any) =
   try {
     Logger.info('Attempting Firebase customInitializeFirebase sign-in', { firebaseConfig }, { tag: 'rn-write-firestore'});
 
-    customInitializeFirebase(firebaseConfig);
+    await customInitializeFirebase(firebaseConfig);
 
     Logger.info('Attempting Firebase signInWithCredential sign-in', { googleCredential }, { tag: 'rn-write-firestore'});
     // Sign in to Firebase

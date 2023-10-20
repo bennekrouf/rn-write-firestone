@@ -18,12 +18,12 @@ const rn_logging_1 = require("rn-logging");
 const getStorageDetails_1 = require("./utils/getStorageDetails");
 const writeToFirebase = (data, merge = true) => __awaiter(void 0, void 0, void 0, function* () {
     const details = yield (0, getStorageDetails_1.getStorageDetails)();
-    rn_logging_1.Logger.info('Attempting to persist data to Firestore', { key: details.firestoreKey, data, mergeOption: merge }, { tag: 'rn-write-firestore', timestamp: true });
+    rn_logging_1.Logger.info('Attempting to persist data to Firestore', { key: details.firestoreKey, data, mergeOption: merge }, { tag: 'rn-write-firestore' });
     try {
         return (0, firestore_1.default)().collection(details.collection).doc(details.firestoreKey).set(data, { merge });
     }
     catch (error) {
-        rn_logging_1.Logger.error('Error occurred while saving data to Firestore', error, { tag: 'rn-write-firestore', timestamp: true });
+        rn_logging_1.Logger.error('Error occurred while saving data to Firestore', error, { tag: 'rn-write-firestore' });
         rn_logging_1.Logger.warn(`Please ensure you have the following Firestore rules set up:
         rules_version = '2';
         service cloud.firestore {
@@ -34,7 +34,7 @@ const writeToFirebase = (data, merge = true) => __awaiter(void 0, void 0, void 0
                                 (request.auth.token.email == id || request.auth.token.uid == id);
             }
           }
-        }`, null, { tag: 'rn-write-firestore', timestamp: true });
+        }`, null, { tag: 'rn-write-firestore' });
     }
 });
 exports.writeToFirebase = writeToFirebase;

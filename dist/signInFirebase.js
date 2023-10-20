@@ -21,8 +21,9 @@ const writeToFirebase_1 = require("./writeToFirebase");
 const signInFirebase = (firebaseConfig, googleCredential) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
-        rn_logging_1.Logger.info('Attempting Firebase sign-in', { firebaseConfig }, { tag: 'rn-write-firestore' });
-        (0, customInitializeFirebase_1.customInitializeFirebase)(firebaseConfig);
+        rn_logging_1.Logger.info('Attempting Firebase customInitializeFirebase sign-in', { firebaseConfig }, { tag: 'rn-write-firestore' });
+        yield (0, customInitializeFirebase_1.customInitializeFirebase)(firebaseConfig);
+        rn_logging_1.Logger.info('Attempting Firebase signInWithCredential sign-in', { googleCredential }, { tag: 'rn-write-firestore' });
         // Sign in to Firebase
         const firebaseUserCredential = yield (0, auth_1.default)().signInWithCredential(googleCredential);
         // Save user to AsyncStorage
