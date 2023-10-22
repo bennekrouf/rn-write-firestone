@@ -11,8 +11,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getKey = void 0;
 const getUser_1 = require("../getUser");
+const rn_logging_1 = require("rn-logging");
 const getKey = () => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield (0, getUser_1.getUser)();
-    return `${user.uid}`;
+    try {
+        rn_logging_1.Logger.info("Fetching user...");
+        const user = yield (0, getUser_1.getUser)();
+        rn_logging_1.Logger.info(`Fetched user with UID: ${user.uid}`);
+        return `${user.uid}`;
+    }
+    catch (err) {
+        rn_logging_1.Logger.error("Failed to fetch user:", err);
+        throw err;
+    }
 });
 exports.getKey = getKey;

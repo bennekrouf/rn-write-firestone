@@ -15,34 +15,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadFromFirebase = void 0;
 const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
 const rn_logging_1 = require("rn-logging");
-const getStorageKey_1 = require("./utils/getStorageKey");
-const getAppName_1 = require("./utils/getAppName");
+const getStorageDetails_1 = require("./utils/getStorageDetails");
 const loadFromFirebase = () => __awaiter(void 0, void 0, void 0, function* () {
-    const key = yield (0, getStorageKey_1.getStorageKey)();
-    rn_logging_1.Logger.info('Attempting to load document from Firestore', null, { tag: 'Firestore', timestamp: true });
+    var _a, _b;
+    const details = yield (0, getStorageDetails_1.getStorageDetails)();
+    rn_logging_1.Logger.info('Attempting to load document from Firestore with key', { key: details.firestoreKey }, { tag: 'rn-write-firestore' });
     try {
-        const app = (0, getAppName_1.getAppName)();
-        const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
         // Validate if appCollection and key are defined and non-empty.
-        if (!appCollection || !key) {
-            console.warn('[WARNING] ' + new Date().toISOString() + ' - loadFromFirebase: appCollection or key is undefined or empty.');
+        if (!details.collection || !details.firestoreKey) {
+            rn_logging_1.Logger.warn(`appCollection or key is undefined or empty.`);
             return undefined;
         }
         // Fetch document from Firestore
-        const documentSnapshot = yield (0, firestore_1.default)().collection(appCollection).doc(key).get();
+        const documentSnapshot = yield (0, firestore_1.default)().collection(details.collection).doc(details.firestoreKey).get();
         // If the document exists, return its data. Else, return undefined or a default value.
         if (documentSnapshot.exists) {
-            rn_logging_1.Logger.info('Document successfully retrieved from Firestore', documentSnapshot.data(), { tag: 'Firestore', timestamp: true });
-            return documentSnapshot.data();
+            rn_logging_1.Logger.info('Document successfully retrieved from Firestore', (_a = documentSnapshot.data()) === null || _a === void 0 ? void 0 : _a.data, { tag: 'rn-write-firestore' });
+            return (_b = documentSnapshot.data()) === null || _b === void 0 ? void 0 : _b.data;
         }
         else {
-            rn_logging_1.Logger.warn('No document found for the given key in the specified appCollection.', null, { tag: 'Firestore', timestamp: true });
+            rn_logging_1.Logger.warn('No document found for the given key in the specified appCollection.', null, { tag: 'rn-write-firestore' });
             return undefined; // or any default value you'd like to return
         }
     }
     catch (error) {
-        rn_logging_1.Logger.error('Failed to load document from Firestore', error, { tag: 'Firestore', timestamp: true });
-        rn_logging_1.Logger.warn('Please ensure you have the appropriate Firestore rules set up and the document/key exists.', null, { tag: 'Firestore', timestamp: true });
+        rn_logging_1.Logger.error('Failed to load document from Firestore', error, { tag: 'rn-write-firestore' });
+        rn_logging_1.Logger.warn('Please ensure you have the appropriate Firestore rules set up and the document/key exists.', null, { tag: 'rn-write-firestore' });
     }
 });
 exports.loadFromFirebase = loadFromFirebase;

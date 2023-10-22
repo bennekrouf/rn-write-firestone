@@ -15,16 +15,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeToAsyncStorage = void 0;
 const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
 const rn_logging_1 = require("rn-logging");
-const getStorageKey_1 = require("./utils/getStorageKey");
+const getStorageDetails_1 = require("./utils/getStorageDetails");
 const writeToAsyncStorage = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    const storageKey = yield (0, getStorageKey_1.getStorageKey)();
-    rn_logging_1.Logger.info('Attempting to persist data to AsyncStorage', { storageKey, data }, { tag: 'AsyncStorage', timestamp: true });
+    const details = yield (0, getStorageDetails_1.getStorageDetails)();
+    rn_logging_1.Logger.info('Attempting to persist data to AsyncStorage', { key: details.asyncStorageKey, data }, { tag: 'rn-write-firestore' });
     try {
-        yield async_storage_1.default.setItem(storageKey, JSON.stringify(data));
-        rn_logging_1.Logger.info('Data successfully saved to AsyncStorage', null, { tag: 'AsyncStorage', timestamp: true });
+        yield async_storage_1.default.setItem(details.asyncStorageKey, JSON.stringify({ data: data }));
+        rn_logging_1.Logger.info('Data successfully saved to AsyncStorage', null, { tag: 'rn-write-firestore' });
     }
     catch (error) {
-        rn_logging_1.Logger.error('Error occurred while saving data to AsyncStorage', error, { tag: 'AsyncStorage', timestamp: true });
+        rn_logging_1.Logger.error('Error occurred while saving data to AsyncStorage', error, { tag: 'rn-write-firestore' });
     }
 });
 exports.writeToAsyncStorage = writeToAsyncStorage;

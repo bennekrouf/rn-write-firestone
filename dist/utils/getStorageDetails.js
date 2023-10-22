@@ -9,11 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getStorageKey = void 0;
+exports.getStorageDetails = void 0;
 const getAppName_1 = require("./getAppName");
 const getKey_1 = require("./getKey");
 const rn_logging_1 = require("rn-logging");
-const getStorageKey = () => __awaiter(void 0, void 0, void 0, function* () {
+const getStorageDetails = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         rn_logging_1.Logger.info("Fetching application name...");
         const app = (0, getAppName_1.getAppName)();
@@ -23,13 +23,19 @@ const getStorageKey = () => __awaiter(void 0, void 0, void 0, function* () {
             rn_logging_1.Logger.warn("Application name not retrieved. It might be undefined or null.");
         }
         const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
-        const storageKey = `${appCollection}:${key}`;
-        rn_logging_1.Logger.info(`Constructed storage key: ${storageKey}`);
-        return storageKey;
+        const firestoreKey = key; // Assuming 'key' is suitable for Firestore doc ID
+        const asyncStorageKey = `${appCollection}:${key}`;
+        rn_logging_1.Logger.info(`Constructed storage key for AsyncStorage: ${asyncStorageKey}`);
+        rn_logging_1.Logger.info(`Constructed key for Firestore: ${firestoreKey}`);
+        return {
+            collection: appCollection,
+            firestoreKey: firestoreKey,
+            asyncStorageKey: asyncStorageKey // For AsyncStorage
+        };
     }
     catch (err) {
-        rn_logging_1.Logger.error("Failed to construct storage key:", err);
+        rn_logging_1.Logger.error("Failed to construct storage details:", err);
         throw err;
     }
 });
-exports.getStorageKey = getStorageKey;
+exports.getStorageDetails = getStorageDetails;

@@ -2,14 +2,13 @@ import firebase from '@react-native-firebase/app';
 
 import { Logger } from 'rn-logging';
 
-export const customInitializeFirebase = (firebaseConfig: any): any => {
-  if (!firebaseConfig || typeof firebaseConfig !== 'object' || Object.keys(firebaseConfig).length === 0) {
-    const errorMsg = 'Invalid or missing firebaseConfig provided.';
-    Logger.error(errorMsg, null, { tag: 'rn-write-firebase' });
-    throw new Error(errorMsg);
-  }
-
+export const customInitializeFirebase = (firebaseConfig:any) => {
   try {
+    if (!firebaseConfig || typeof firebaseConfig !== 'object' || Object.keys(firebaseConfig).length === 0) {
+      const errorMsg = 'Invalid or missing firebaseConfig provided.';
+      Logger.error(errorMsg, null, { tag: 'rn-write-firebase' });
+      throw new Error(errorMsg);
+    }
     if (!firebase.apps.length) {
       Logger.info('Initializing firebase app', null, { tag: 'rn-write-firebase' });
       return firebase.initializeApp(firebaseConfig);
