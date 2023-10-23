@@ -23,7 +23,7 @@ const getStorageDetails = () => __awaiter(void 0, void 0, void 0, function* () {
             rn_logging_1.Logger.warn("Application name not retrieved. It might be undefined or null.");
         }
         const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
-        const firestoreKey = key; // Assuming 'key' is suitable for Firestore doc ID
+        const firestoreKey = key;
         const asyncStorageKey = `${appCollection}:${key}`;
         rn_logging_1.Logger.info(`Constructed storage key for AsyncStorage: ${asyncStorageKey}`);
         rn_logging_1.Logger.info(`Constructed key for Firestore: ${firestoreKey}`);

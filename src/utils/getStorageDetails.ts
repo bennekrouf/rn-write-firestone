@@ -16,7 +16,7 @@ export const getStorageDetails = async () => {
 
     const appCollection = app?.toLocaleLowerCase();
 
-    const firestoreKey = key;  // Assuming 'key' is suitable for Firestore doc ID
+    const firestoreKey = key;
     const asyncStorageKey = `${appCollection}:${key}`;
     
     Logger.info(`Constructed storage key for AsyncStorage: ${asyncStorageKey}`);

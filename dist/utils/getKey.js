@@ -16,8 +16,8 @@ const getKey = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         rn_logging_1.Logger.info("Fetching user...");
         const user = yield (0, getUser_1.getUser)();
-        rn_logging_1.Logger.info(`Fetched user with UID: ${user.uid}`);
-        return `${user.uid}`;
+        rn_logging_1.Logger.info(`Fetched user with UID: ${user === null || user === void 0 ? void 0 : user.uid}`);
+        return `${user === null || user === void 0 ? void 0 : user.uid}`;
     }
     catch (err) {
         rn_logging_1.Logger.error("Failed to fetch user:", err);

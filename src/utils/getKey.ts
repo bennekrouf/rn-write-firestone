@@ -7,8 +7,8 @@ export const getKey = async (): Promise<string> => {
 
     const user = await getUser();
 
-    Logger.info(`Fetched user with UID: ${user.uid}`);
-    return `${user.uid}`;
+    Logger.info(`Fetched user with UID: ${user?.uid}`);
+    return `${user?.uid}`;
   } catch (err) {
     Logger.error("Failed to fetch user:", err);
     throw err; 
