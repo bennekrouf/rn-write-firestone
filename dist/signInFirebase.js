@@ -18,11 +18,10 @@ const async_storage_1 = __importDefault(require("@react-native-async-storage/asy
 const rn_logging_1 = require("rn-logging");
 const customInitializeFirebase_1 = require("./customInitializeFirebase");
 const writeToFirebase_1 = require("./writeToFirebase");
-const signInFirebase = (firebaseConfig, googleCredential) => __awaiter(void 0, void 0, void 0, function* () {
+const signInFirebase = (googleCredential) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
-        rn_logging_1.Logger.info('Attempting Firebase customInitializeFirebase sign-in', { firebaseConfig }, { tag: 'rn-write-firestore' });
-        yield (0, customInitializeFirebase_1.customInitializeFirebase)(firebaseConfig);
+        yield (0, customInitializeFirebase_1.customInitializeFirebase)();
         rn_logging_1.Logger.info('Attempting Firebase signInWithCredential sign-in', { googleCredential }, { tag: 'rn-write-firestore' });
         // Sign in to Firebase
         const firebaseUserCredential = yield (0, auth_1.default)().signInWithCredential(googleCredential);

@@ -11,7 +11,6 @@ declare module 'rn-write-firestore' {
     }
   
     export function signInFirebase(
-      firebaseConfig: FirebaseConfig,
       googleCredential: any
     ): Promise<User>;
 

@@ -21,6 +21,15 @@ Ensure you have @react-native-firebase/auth, @react-native-firebase/firestore, a
 
 ## Usage
 
+### Firebase Configuration Extraction
+
+rn-write-firestore comes with an embedded mechanism that allows automatic extraction of Firebase configuration from your app's GoogleService-Info.plist. This helps streamline the Firebase setup process, especially if you're looking to avoid hardcoding Firebase configurations or manually importing them.
+
+#### How does it work?
+Under the hood, we use native modules to directly read from the GoogleService-Info.plist and provide a ready-to-use configuration object for Firebase initialization in React Native.
+
+
+
 ### 1. Firebase Authentication
 
 To sign in using Firebase with Google credentials:
@@ -36,7 +45,7 @@ const googleCredential = {
   // your google credential here
 };
 
-signInFirebase(firebaseConfig, googleCredential)
+signInFirebase(googleCredential)
   .then(user => {
     console.log("Signed in user:", user);
   })
