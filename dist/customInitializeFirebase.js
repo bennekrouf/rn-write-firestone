@@ -5,13 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.customInitializeFirebase = void 0;
 // Assuming both functions are in the same directory for simplicity
-const extractFirebaseConfig_1 = require("./extractFirebaseConfig");
+const rn_firebase_config_1 = require("rn-firebase-config");
 const app_1 = __importDefault(require("@react-native-firebase/app"));
 const rn_logging_1 = require("rn-logging");
 const customInitializeFirebase = () => {
     rn_logging_1.Logger.info('Starting Firebase custom initialization...', null, { tag: 'rn-write-firebase' });
     try {
-        const firebaseConfig = (0, extractFirebaseConfig_1.extractFirebaseConfig)();
+        const firebaseConfig = (0, rn_firebase_config_1.extractFirebaseConfig)();
         // Logging the extraction process
         if (firebaseConfig) {
             rn_logging_1.Logger.info('Successfully extracted Firebase config', null, { tag: 'rn-write-firebase' });

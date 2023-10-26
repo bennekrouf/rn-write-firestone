@@ -1,5 +1,5 @@
 // Assuming both functions are in the same directory for simplicity
-import { extractFirebaseConfig } from './extractFirebaseConfig'; 
+import { extractFirebaseConfig } from 'rn-firebase-config'; 
 
 import firebase from '@react-native-firebase/app';
 import { Logger } from 'rn-logging';

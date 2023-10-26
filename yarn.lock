@@ -3928,6 +3928,13 @@ rimraf@~2.6.2:
   dependencies:
     glob "^7.1.3"
 
+rn-firebase-config@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/rn-firebase-config/-/rn-firebase-config-1.0.1.tgz#da5b4c4facb0ef0ad10379d77ad411d88ca8cfd3"
+  integrity sha512-ACESH8A7eA/V1BnQqFBXwL9yrTmFiD4zk6hx+VqO66wba6/HuZAkZagaUZbwlFDZnTd8ifTU2CO0hZz2by64yA==
+  dependencies:
+    rn-logging "^1.0.6"
+
 rn-logging@^1.0.6:
   version "1.0.6"
   resolved "https://registry.npmjs.org/rn-logging/-/rn-logging-1.0.6.tgz#92c6f250ac05581e3243d2f40b67a3a3560e5854"
