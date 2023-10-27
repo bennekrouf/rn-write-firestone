@@ -1,6 +1,6 @@
 {
   "name": "rn-write-firestore",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "main": "dist/index.js",
   "license": "MIT",
   "author": "Mohamed Bennekrouf",
@@ -20,7 +20,7 @@
     "@react-native-firebase/auth": "^18.5.0",
     "@react-native-firebase/firestore": "^18.5.0",
     "react-native-device-info": "^10.11.0",
-    "rn-firebase-config": "^1.0.1",
+    "rn-firebase-config": "^1.0.4",
     "rn-logging": "^1.0.6"
   },
   "devDependencies": {
