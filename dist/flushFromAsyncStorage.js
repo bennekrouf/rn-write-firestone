@@ -15,16 +15,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.flushFromAsyncStorage = void 0;
 const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
 const getStorageDetails_1 = require("./utils/getStorageDetails");
-const rn_logging_1 = require("rn-logging");
+const mayo_logger_1 = require("mayo-logger");
 const flushFromAsyncStorage = () => __awaiter(void 0, void 0, void 0, function* () {
     const details = yield (0, getStorageDetails_1.getStorageDetails)();
-    rn_logging_1.Logger.info('Attempting to remove storageKey from AsyncStorage', { key: details.asyncStorageKey }, { tag: 'rn-write-firestore' });
+    mayo_logger_1.Logger.info('Attempting to remove storageKey from AsyncStorage', { key: details.asyncStorageKey }, { tag: 'mayo-firestore-write' });
     try {
         yield async_storage_1.default.removeItem(details.asyncStorageKey);
-        rn_logging_1.Logger.info('Data successfully removed from AsyncStorage', { key: details.asyncStorageKey }, { tag: 'rn-write-firestore' });
+        mayo_logger_1.Logger.info('Data successfully removed from AsyncStorage', { key: details.asyncStorageKey }, { tag: 'mayo-firestore-write' });
     }
     catch (error) {
-        rn_logging_1.Logger.error('Error occurred while removing data from AsyncStorage', error, { tag: 'rn-write-firestore' });
+        mayo_logger_1.Logger.error('Error occurred while removing data from AsyncStorage', error, { tag: 'mayo-firestore-write' });
     }
 });
 exports.flushFromAsyncStorage = flushFromAsyncStorage;

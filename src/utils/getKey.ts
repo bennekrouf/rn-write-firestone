@@ -1,5 +1,5 @@
 import { getUser } from "../getUser";
-import { Logger } from "rn-logging";
+import { Logger } from "mayo-logger";
 
 export const getKey = async (): Promise<string> => {
   try {

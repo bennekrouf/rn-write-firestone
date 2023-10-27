@@ -14,13 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.syncAsyncStorageToFirestore = void 0;
 const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
-const rn_logging_1 = require("rn-logging");
+const mayo_logger_1 = require("mayo-logger");
 const loadFromAsyncStorage_1 = require("./loadFromAsyncStorage");
 const getStorageDetails_1 = require("./utils/getStorageDetails");
 const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const details = yield (0, getStorageDetails_1.getStorageDetails)();
-    rn_logging_1.Logger.info('Starting sync of AsyncStorage data to Firestore', { key: details.asyncStorageKey }, { tag: 'rn-write-firestore' });
+    mayo_logger_1.Logger.info('Starting sync of AsyncStorage data to Firestore', { key: details.asyncStorageKey }, { tag: 'mayo-firestore-write' });
     try {
         // Retrieve current data from AsyncStorage
         let existingDataString = yield (0, loadFromAsyncStorage_1.loadFromAsyncStorage)();
@@ -30,17 +30,17 @@ const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, func
         const firestoreData = documentSnapshot.exists ? (_a = documentSnapshot.data()) === null || _a === void 0 ? void 0 : _a.data : {};
         // Merge firestore data with AsyncStorage data (with AsyncStorage data taking precedence)
         const mergedData = Object.assign(Object.assign(Object.assign({}, firestoreData), asyncStorageData), { updatedAt: new Date() });
-        rn_logging_1.Logger.info('Attempting to write merged data to Firestore...', { mergedData }, { tag: 'rn-write-firestore' });
+        mayo_logger_1.Logger.info('Attempting to write merged data to Firestore...', { mergedData }, { tag: 'mayo-firestore-write' });
         // Write the merged data back to firestore
         yield (0, firestore_1.default)()
             .collection(details.collection)
             .doc(details.firestoreKey)
             .set({ data: mergedData }, { merge: true });
-        rn_logging_1.Logger.info('Successfully synced AsyncStorage data to Firestore.', null, { tag: 'rn-write-firestore' });
+        mayo_logger_1.Logger.info('Successfully synced AsyncStorage data to Firestore.', null, { tag: 'mayo-firestore-write' });
     }
     catch (error) {
-        rn_logging_1.Logger.error('Error occurred during sync of AsyncStorage to Firestore', error, { tag: 'rn-write-firestore' });
-        rn_logging_1.Logger.warn(`Please ensure you have the correct Firestore rules set up.`, null, { tag: 'rn-write-firestore' });
+        mayo_logger_1.Logger.error('Error occurred during sync of AsyncStorage to Firestore', error, { tag: 'mayo-firestore-write' });
+        mayo_logger_1.Logger.warn(`Please ensure you have the correct Firestore rules set up.`, null, { tag: 'mayo-firestore-write' });
     }
 });
 exports.syncAsyncStorageToFirestore = syncAsyncStorageToFirestore;

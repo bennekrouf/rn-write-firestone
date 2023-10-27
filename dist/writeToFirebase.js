@@ -14,17 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeToFirebase = void 0;
 const firestore_1 = __importDefault(require("@react-native-firebase/firestore"));
-const rn_logging_1 = require("rn-logging");
+const mayo_logger_1 = require("mayo-logger");
 const getStorageDetails_1 = require("./utils/getStorageDetails");
 const writeToFirebase = (data, merge = true) => __awaiter(void 0, void 0, void 0, function* () {
     const details = yield (0, getStorageDetails_1.getStorageDetails)();
-    rn_logging_1.Logger.info('Attempting to persist data to Firestore', { key: details.firestoreKey, data, mergeOption: merge }, { tag: 'rn-write-firestore' });
+    mayo_logger_1.Logger.info('Attempting to persist data to Firestore', { key: details.firestoreKey, data, mergeOption: merge }, { tag: 'mayo-firestore-write' });
     try {
         return (0, firestore_1.default)().collection(details.collection).doc(details.firestoreKey).set(data, { merge });
     }
     catch (error) {
-        rn_logging_1.Logger.error('Error occurred while saving data to Firestore', error, { tag: 'rn-write-firestore' });
-        rn_logging_1.Logger.warn(`Please ensure you have the following Firestore rules set up:
+        mayo_logger_1.Logger.error('Error occurred while saving data to Firestore', error, { tag: 'mayo-firestore-write' });
+        mayo_logger_1.Logger.warn(`Please ensure you have the following Firestore rules set up:
         rules_version = '2';
         service cloud.firestore {
           match /databases/{database}/documents {
@@ -34,7 +34,7 @@ const writeToFirebase = (data, merge = true) => __awaiter(void 0, void 0, void 0
                                 (request.auth.token.email == id || request.auth.token.uid == id);
             }
           }
-        }`, null, { tag: 'rn-write-firestore' });
+        }`, null, { tag: 'mayo-firestore-write' });
     }
 });
 exports.writeToFirebase = writeToFirebase;

@@ -12,21 +12,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getStorageDetails = void 0;
 const getAppName_1 = require("./getAppName");
 const getKey_1 = require("./getKey");
-const rn_logging_1 = require("rn-logging");
+const mayo_logger_1 = require("mayo-logger");
 const getStorageDetails = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        rn_logging_1.Logger.info("Fetching application name...");
+        mayo_logger_1.Logger.info("Fetching application name...");
         const app = (0, getAppName_1.getAppName)();
-        rn_logging_1.Logger.info("Fetching key...");
+        mayo_logger_1.Logger.info("Fetching key...");
         const key = yield (0, getKey_1.getKey)();
         if (!app) {
-            rn_logging_1.Logger.warn("Application name not retrieved. It might be undefined or null.");
+            mayo_logger_1.Logger.warn("Application name not retrieved. It might be undefined or null.");
         }
         const appCollection = app === null || app === void 0 ? void 0 : app.toLocaleLowerCase();
         const firestoreKey = key;
         const asyncStorageKey = `${appCollection}:${key}`;
-        rn_logging_1.Logger.info(`Constructed storage key for AsyncStorage: ${asyncStorageKey}`);
-        rn_logging_1.Logger.info(`Constructed key for Firestore: ${firestoreKey}`);
+        mayo_logger_1.Logger.info(`Constructed storage key for AsyncStorage: ${asyncStorageKey}`);
+        mayo_logger_1.Logger.info(`Constructed key for Firestore: ${firestoreKey}`);
         return {
             collection: appCollection,
             firestoreKey: firestoreKey,
@@ -34,7 +34,7 @@ const getStorageDetails = () => __awaiter(void 0, void 0, void 0, function* () {
         };
     }
     catch (err) {
-        rn_logging_1.Logger.error("Failed to construct storage details:", err);
+        mayo_logger_1.Logger.error("Failed to construct storage details:", err);
         throw err;
     }
 });

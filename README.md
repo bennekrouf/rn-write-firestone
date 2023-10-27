@@ -6,13 +6,13 @@ A utility package for React Native apps which provides an abstract layer around 
 
 - 🔒 Firebase Authentication with Google.
 - 💾 Seamless synchronization between Firestore and AsyncStorage.
-- 📖 Comprehensive logging using `rn-logging`.
+- 📖 Comprehensive logging using `mayo-logger`.
 - 📦 Lightweight & minimal setup.
 
 ## Installation
 
 ```bash
-yarn add rn-write-firestore
+yarn add mayo-firestore-write
 ```
 
 ## Prerequisites
@@ -23,7 +23,7 @@ Ensure you have @react-native-firebase/auth, @react-native-firebase/firestore, a
 
 ### Firebase Configuration Extraction
 
-rn-write-firestore relies on rn-firebase-config which is an embedded mechanism that allows automatic extraction of Firebase configuration from your app's GoogleService-Info.plist. This helps streamline the Firebase setup process, especially if you're looking to avoid hardcoding Firebase configurations or manually importing them.
+mayo-firestore-write relies on mayo-firebase-config which is an embedded mechanism that allows automatic extraction of Firebase configuration from your app's GoogleService-Info.plist. This helps streamline the Firebase setup process, especially if you're looking to avoid hardcoding Firebase configurations or manually importing them.
 
 #### How does it work?
 Under the hood, we use native modules to directly read from the GoogleService-Info.plist and provide a ready-to-use configuration object for Firebase initialization in React Native.
@@ -35,10 +35,10 @@ Under the hood, we use native modules to directly read from the GoogleService-In
 To sign in using Firebase with Google credentials:
 
 ```Javascript
-import { signInFirebase } from 'rn-write-firestore';
+import { signInFirebase } from 'mayo-firestore-write';
 
 const googleCredential = {
-  // your google credential here. You can use rn-auth-firebase package to get it.
+  // your google credential here. You can use mayo-firebase-auth package to get it.
 };
 
 signInFirebase(googleCredential)
@@ -56,7 +56,7 @@ signInFirebase(googleCredential)
 
 To load data from AsyncStorage:
 ```Javascript
-import { loadFromAsyncStorage } from 'rn-write-firestore';
+import { loadFromAsyncStorage } from 'mayo-firestore-write';
 
 const data = await loadFromAsyncStorage();
 
@@ -66,7 +66,7 @@ const data = await loadFromAsyncStorage();
 To write data to AsyncStorage:
 
 ```Javascript
-import { writeToAsyncStorage } from 'rn-write-firestore';
+import { writeToAsyncStorage } from 'mayo-firestore-write';
 
 const sampleData = {
   key1: 'value1',
@@ -83,7 +83,7 @@ await writeToAsyncStorage(sampleData);
 To load data from Firestore:
 
 ```Javascript
-import { loadFromFirebase } from 'rn-write-firestore';
+import { loadFromFirebase } from 'mayo-firestore-write';
 
 const data = await loadFromFirebase();
 
@@ -92,7 +92,7 @@ const data = await loadFromFirebase();
 To sync AsyncStorage data to Firestore:
 
 ```Javascript
-import { syncAsyncStorageToFirestore } from 'rn-write-firestore';
+import { syncAsyncStorageToFirestore } from 'mayo-firestore-write';
 
 await syncAsyncStorageToFirestore();
 
@@ -103,12 +103,12 @@ await syncAsyncStorageToFirestore();
 To remove a particular data (identified by its storageKey) from AsyncStorage:
 
 ```javascript
-import { flushFromAsyncStorage } from 'rn-write-firestore';
+import { flushFromAsyncStorage } from 'mayo-firestore-write';
 
 await flushFromAsyncStorage();
 ```
 
-This function will attempt to locate the data associated with the storageKey in AsyncStorage and then remove it. All actions will be logged using the integrated rn-logging module.
+This function will attempt to locate the data associated with the storageKey in AsyncStorage and then remove it. All actions will be logged using the integrated mayo-logger module.
 
 ## Contribute
 
@@ -116,5 +116,5 @@ Contributions are always welcome! Please read the contribution guidelines first.
 
 ## License
 
-rn-write-firestore is licensed under MIT.
+mayo-firestore-write is licensed under MIT.
 

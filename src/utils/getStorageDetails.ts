@@ -1,6 +1,6 @@
 import { getAppName } from './getAppName';
 import { getKey } from './getKey';
-import { Logger } from "rn-logging";
+import { Logger } from "mayo-logger";
 
 export const getStorageDetails = async () => {
   try {

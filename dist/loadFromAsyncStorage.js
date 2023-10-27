@@ -14,26 +14,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadFromAsyncStorage = void 0;
 const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
-const rn_logging_1 = require("rn-logging");
+const mayo_logger_1 = require("mayo-logger");
 const getStorageDetails_1 = require("./utils/getStorageDetails");
 const loadFromAsyncStorage = () => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
         const details = yield (0, getStorageDetails_1.getStorageDetails)();
-        rn_logging_1.Logger.info('Attempting to load data from AsyncStorage : ', details.asyncStorageKey, { tag: 'rn-write-firestore' });
+        mayo_logger_1.Logger.info('Attempting to load data from AsyncStorage : ', details.asyncStorageKey, { tag: 'mayo-firestore-write' });
         const dataString = yield async_storage_1.default.getItem(details.asyncStorageKey);
         if (dataString) {
-            rn_logging_1.Logger.info('Data successfully retrieved from AsyncStorage', JSON.parse(dataString), { tag: 'rn-write-firestore' });
+            mayo_logger_1.Logger.info('Data successfully retrieved from AsyncStorage', JSON.parse(dataString), { tag: 'mayo-firestore-write' });
             return (_a = JSON.parse(dataString)) === null || _a === void 0 ? void 0 : _a.data; // Convert string back to object
         }
         else {
-            rn_logging_1.Logger.warn('No data found for the given storageKey in AsyncStorage.', details.asyncStorageKey, { tag: 'rn-write-firestore' });
+            mayo_logger_1.Logger.warn('No data found for the given storageKey in AsyncStorage.', details.asyncStorageKey, { tag: 'mayo-firestore-write' });
             return undefined; // or any default value you'd like to return
         }
     }
     catch (error) {
-        rn_logging_1.Logger.error('Failed to load data from AsyncStorage', error, { tag: 'rn-write-firestore' });
-        rn_logging_1.Logger.warn('Please ensure you have read/write permissions for AsyncStorage and the key exists.', null, { tag: 'rn-write-firestore' });
+        mayo_logger_1.Logger.error('Failed to load data from AsyncStorage', error, { tag: 'mayo-firestore-write' });
+        mayo_logger_1.Logger.warn('Please ensure you have read/write permissions for AsyncStorage and the key exists.', null, { tag: 'mayo-firestore-write' });
     }
 });
 exports.loadFromAsyncStorage = loadFromAsyncStorage;

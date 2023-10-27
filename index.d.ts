@@ -1,4 +1,4 @@
-declare module 'rn-write-firestore' {
+declare module 'mayo-firestore-write' {
     interface FirebaseConfig {
       apiKey: string;
       authDomain: string;
