@@ -1,9 +1,9 @@
 {
   "name": "mayo-firestore-write",
   "version": "1.1.8",
-  "main": "dist/index.js",
   "license": "MIT",
   "author": "Mohamed Bennekrouf",
+  "main": "dist/index.js",
   "types": "index.d.ts",
   "scripts": {
     "semantic-release": "semantic-release"
@@ -19,7 +19,7 @@
     "@react-native-firebase/app": "^18.5.0",
     "@react-native-firebase/auth": "^18.5.0",
     "@react-native-firebase/firestore": "^18.5.0",
-    "mayo-firebase-config": "^1.0.8",
+    "mayo-firebase-config": "^1.0.9",
     "mayo-logger": "^1.0.8",
     "react-native-device-info": "^10.11.0"
   },
