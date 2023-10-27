@@ -3010,14 +3010,14 @@ makeerror@1.0.12:
   dependencies:
     tmpl "1.0.5"
 
-mayo-firebase-config@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.npmjs.org/mayo-firebase-config/-/mayo-firebase-config-1.0.9.tgz#10d2e97d0a823f63751607c7a8041d6af77250c8"
-  integrity sha512-HAAjkH7y0ZKwyx+MYiDQ6gY1eI6ROERZWL9vJqDAhFtx+ANNq8HViiMxOOWP2ZXaDL4gUoG0Wfvq75sOjL5ViA==
+mayo-firebase-config@^1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/mayo-firebase-config/-/mayo-firebase-config-1.0.12.tgz#f60f27ed5868f76a3811952475d12177abfca6e7"
+  integrity sha512-Bn0leWj9nn47lp2Zb1NFeKMCBU7O9wWLrG9AAKSz9TbvnSJIclgRKrxHNZRLHGayhluvJt5CW5VGO/w6E/7WKw==
   dependencies:
-    mayo-logger "^1.0.7"
+    mayo-logger "^1.0.8"
 
-mayo-logger@^1.0.7, mayo-logger@^1.0.8:
+mayo-logger@^1.0.8:
   version "1.0.8"
   resolved "https://registry.npmjs.org/mayo-logger/-/mayo-logger-1.0.8.tgz#57123a32e3673f2bc368dbe22d5bc34b6af98560"
   integrity sha512-hR3JiImAJUMcY9BZtpgtGsgvOJ0EnpO5vj35gkExaXLmZ1jtPMp2/30+WUM8XDTIH9LqWQ6RKYMmZ9KsJi5goQ==
