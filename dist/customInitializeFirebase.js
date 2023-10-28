@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -8,10 +17,10 @@ exports.customInitializeFirebase = void 0;
 const mayo_firebase_config_1 = require("mayo-firebase-config");
 const app_1 = __importDefault(require("@react-native-firebase/app"));
 const mayo_logger_1 = require("mayo-logger");
-const customInitializeFirebase = () => {
+const customInitializeFirebase = () => __awaiter(void 0, void 0, void 0, function* () {
     mayo_logger_1.Logger.info('Starting Firebase custom initialization...', null, { tag: 'mayo-firebase-write' });
     try {
-        const firebaseConfig = (0, mayo_firebase_config_1.extractFirebaseConfig)();
+        const firebaseConfig = yield (0, mayo_firebase_config_1.extractFirebaseConfig)();
         // Logging the extraction process
         if (firebaseConfig) {
             mayo_logger_1.Logger.info('Successfully extracted Firebase config', null, { tag: 'mayo-firebase-write' });
@@ -39,5 +48,5 @@ const customInitializeFirebase = () => {
         mayo_logger_1.Logger.error('Error initializing firebase app', error, { tag: 'mayo-firebase-write' });
         throw error;
     }
-};
+});
 exports.customInitializeFirebase = customInitializeFirebase;
