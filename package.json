@@ -1,6 +1,6 @@
 {
   "name": "mayo-firestore-write",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": "MIT",
   "author": "Mohamed Bennekrouf",
   "main": "dist/index.js",
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/firebase": "^3.2.1",
-    "@types/react": "^18.2.21",
+    "@types/react": "^18.2.27",
     "@types/react-native": "^0.72.2",
     "typescript": "^5.2.2"
   },
