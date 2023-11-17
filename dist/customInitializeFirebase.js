@@ -20,7 +20,7 @@ const mayo_logger_1 = require("mayo-logger");
 const customInitializeFirebase = () => __awaiter(void 0, void 0, void 0, function* () {
     mayo_logger_1.Logger.info('Starting Firebase custom initialization...', null, { tag: 'mayo-firebase-write' });
     try {
-        const firebaseConfig = yield (0, mayo_firebase_config_1.extractFirebaseConfig)();
+        const firebaseConfig = yield (0, mayo_firebase_config_1.extractConfig)();
         // Logging the extraction process
         if (firebaseConfig) {
             mayo_logger_1.Logger.info('Successfully extracted Firebase config', null, { tag: 'mayo-firebase-write' });
