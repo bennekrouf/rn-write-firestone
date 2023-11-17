@@ -1,5 +1,5 @@
 export * from './signInFirebase';
-export * from './loadFromFirebase';
+export * from './loadFromFirestore';
 export * from './loadFromAsyncStorage';
 export * from './writeToAsyncStorage';
 export * from './syncAsyncStorageToFirestore';

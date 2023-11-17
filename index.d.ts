@@ -15,7 +15,7 @@ declare module 'mayo-firestore-write' {
     ): Promise<User>;
 
     export function writeToFirebase(data: any, merge?: boolean): Promise<User | null>;
-    export function loadFromFirebase(): Promise<any | null>;
+    export function loadFromFirestore(): Promise<any | null>;
     export function writeToAsyncStorage(data: any, merge?: boolean): Promise<User | null>;
     export function loadFromAsyncStorage(): Promise<any | null>;
     export function syncAsyncStorageToFirestore(): Promise<null>;

@@ -2,7 +2,7 @@ import firestore from '@react-native-firebase/firestore';
 import { Logger } from 'mayo-logger'; 
 import { getStorageDetails } from './utils/getStorageDetails';
 
-export const loadFromFirebase = async () => {
+export const loadFromFirestore = async () => {
   const details = await getStorageDetails();
   Logger.info('Attempting to load document from Firestore with key', {key: details.firestoreKey}, { tag: 'mayo-firestore-write'});
 

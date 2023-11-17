@@ -83,9 +83,9 @@ await writeToAsyncStorage(sampleData);
 To load data from Firestore:
 
 ```Javascript
-import { loadFromFirebase } from 'mayo-firestore-write';
+import { loadFromFirestore } from 'mayo-firestore-write';
 
-const data = await loadFromFirebase();
+const data = await loadFromFirestore();
 
 ```
 
