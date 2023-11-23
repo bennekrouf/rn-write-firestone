@@ -514,10 +514,19 @@
     "@react-native/virtualized-lists" "^0.72.4"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^18.2.21":
+"@types/react@*":
   version "18.2.22"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.22.tgz#abe778a1c95a07fa70df40a52d7300a40b949ccb"
   integrity sha512-60fLTOLqzarLED2O3UQImc/lsNRgG0jE/a1mPW9KjMemY0LMITWEsbS4VvZ4p6rorEHd5YKxxmMKSDK505GHpA==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@^18.2.27":
+  version "18.2.38"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.38.tgz#3605ca41d3daff2c434e0b98d79a2469d4c2dd52"
+  integrity sha512-cBBXHzuPtQK6wNthuVMV6IjHAFkdl/FOPFIlkd81/Cd1+IqkHu/A+w4g43kaQQoYHik/ruaQBDL72HyCy1vuMw==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -761,6 +770,11 @@ mayo-logger@^1.0.8:
   version "1.0.8"
   resolved "https://registry.npmjs.org/mayo-logger/-/mayo-logger-1.0.8.tgz#57123a32e3673f2bc368dbe22d5bc34b6af98560"
   integrity sha512-hR3JiImAJUMcY9BZtpgtGsgvOJ0EnpO5vj35gkExaXLmZ1jtPMp2/30+WUM8XDTIH9LqWQ6RKYMmZ9KsJi5goQ==
+
+mayo-logger@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/mayo-logger/-/mayo-logger-1.1.0.tgz#ee1236a4aa791d3bece7dd1315c28458e6868884"
+  integrity sha512-Lfnjppm5kD+7uv0OWHwDOUYOB19p2pK0AqLXihZc2UH5lPi3O3xN+dFGnHUoFHfdWdUqsVgYvFoUJQ5OAOua1Q==
 
 merge-options@^3.0.4:
   version "3.0.4"
