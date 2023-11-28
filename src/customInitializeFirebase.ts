@@ -1,4 +1,3 @@
-// Assuming both functions are in the same directory for simplicity
 import { extractFirebaseConfig } from 'mayo-firebase-config'; 
 
 import firebase from '@react-native-firebase/app';
@@ -10,7 +9,6 @@ export const customInitializeFirebase = async () => {
     try {
         const firebaseConfig = await extractFirebaseConfig();
 
-        // Logging the extraction process
         if (firebaseConfig) {
             Logger.info('Successfully extracted Firebase config', null, { tag: 'mayo-firebase-write' });
         } else {
@@ -23,7 +21,6 @@ export const customInitializeFirebase = async () => {
             throw new Error(errorMsg);
         }
 
-        // Logging the actual Firebase config; be cautious about this in a production environment
         Logger.info('Firebase config:', { firebaseConfig }, { tag: 'mayo-firebase-write' });
 
         if (!firebase.apps.length) {

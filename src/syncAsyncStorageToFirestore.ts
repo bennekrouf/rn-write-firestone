@@ -4,10 +4,10 @@ import { loadFromAsyncStorage } from './loadFromAsyncStorage';
 import { getStorageDetails } from './utils/getStorageDetails';
 
 export const syncAsyncStorageToFirestore = async () => {
-  const details = await getStorageDetails();
-  Logger.info('Starting sync of AsyncStorage data to Firestore', { key: details.asyncStorageKey }, { tag: 'mayo-firestore-write'});
-
+  
   try {
+    const details = await getStorageDetails();
+    Logger.info('Starting sync of AsyncStorage data to Firestore', { key: details.asyncStorageKey }, { tag: 'mayo-firestore-write'});
     // Retrieve current data from AsyncStorage
     let existingDataString = await loadFromAsyncStorage();
     const asyncStorageData = existingDataString || {};

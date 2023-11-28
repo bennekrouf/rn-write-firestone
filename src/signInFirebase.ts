@@ -6,9 +6,7 @@ import {writeToFirebase} from './writeToFirebase';
 
 export const signInFirebase = async (googleCredential:any) => {
   try {
-
     await customInitializeFirebase();
-
     Logger.info('Attempting Firebase signInWithCredential sign-in', { googleCredential }, { tag: 'mayo-firestore-write'});
     // Sign in to Firebase
     const firebaseUserCredential = await auth().signInWithCredential(googleCredential);

@@ -3,10 +3,11 @@ import { Logger } from 'mayo-logger';
 import { getStorageDetails } from './utils/getStorageDetails';
 
 export const loadFromFirestore = async () => {
-  const details = await getStorageDetails();
-  Logger.info('Attempting to load document from Firestore with key', {key: details.firestoreKey}, { tag: 'mayo-firestore-write'});
 
   try {
+    const details = await getStorageDetails();
+    Logger.info('Attempting to load document from Firestore with key', {key: details.firestoreKey}, { tag: 'mayo-firestore-write'});
+
     // Validate if appCollection and key are defined and non-empty.
     if (!details.collection || !details.firestoreKey) {
       Logger.warn(`appCollection or key is undefined or empty.`);

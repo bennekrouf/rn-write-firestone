@@ -759,10 +759,10 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-mayo-firebase-config@^1.2.19:
-  version "1.2.19"
-  resolved "https://registry.npmjs.org/mayo-firebase-config/-/mayo-firebase-config-1.2.19.tgz#621273d481c7d75314a92ae47df7fc76d81a5c24"
-  integrity sha512-wrYvXX3gX2Eip/St65X7Hb5anMeRaRA8cbuwKdEjqDvusEiBl6voU1PtLAsIzQ6l8h54IWpHNxZbduXxYclqnw==
+mayo-firebase-config@^1.2.20:
+  version "1.2.20"
+  resolved "https://registry.npmjs.org/mayo-firebase-config/-/mayo-firebase-config-1.2.20.tgz#767fbb5c668f16a5678359c80fde355d75e28f13"
+  integrity sha512-K0S6ZoiFiWfX/EDr8FnjvTg3gr4dUdPbuBRs7WgJnWG/wEtWsM2wvhYDr2d+aN0qakdZUKSVSLBkZpoDYWtX2g==
   dependencies:
     mayo-logger "^1.0.8"
 

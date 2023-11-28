@@ -1,9 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Logger } from 'mayo-logger';
 
-export async function getUser() {
-  const storageKey = 'user'; 
-
+export async function getUser(storageKey = 'user') {
   try {
     const userString = await AsyncStorage.getItem(storageKey);
 
