@@ -514,10 +514,19 @@
     "@react-native/virtualized-lists" "^0.72.4"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^18.2.21":
+"@types/react@*":
   version "18.2.22"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.22.tgz#abe778a1c95a07fa70df40a52d7300a40b949ccb"
   integrity sha512-60fLTOLqzarLED2O3UQImc/lsNRgG0jE/a1mPW9KjMemY0LMITWEsbS4VvZ4p6rorEHd5YKxxmMKSDK505GHpA==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@^18.2.27":
+  version "18.2.39"
+  resolved "https://registry.npmjs.org/@types/react/-/react-18.2.39.tgz#744bee99e053ad61fe74eb8b897f3ab5b19a7e25"
+  integrity sha512-Oiw+ppED6IremMInLV4HXGbfbG6GyziY3kqAwJYOR0PNbkYDmLWQA3a95EhdSmamsvbkJN96ZNN+YD+fGjzSBA==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -750,10 +759,10 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-mayo-firebase-config@^1.2.16:
-  version "1.2.16"
-  resolved "https://registry.npmjs.org/mayo-firebase-config/-/mayo-firebase-config-1.2.16.tgz#8402b3744e294da9d8ac899aae3993cf280c620c"
-  integrity sha512-vOK1tD/I6RQ5jfTxJChHjClDhvmfAO1/CZu1CHafaGXDz/j+cQyY6MelpiqrKRXHXiMvkfMcBqQ5zRl34n5ZmA==
+mayo-firebase-config@^1.2.19:
+  version "1.2.19"
+  resolved "https://registry.npmjs.org/mayo-firebase-config/-/mayo-firebase-config-1.2.19.tgz#621273d481c7d75314a92ae47df7fc76d81a5c24"
+  integrity sha512-wrYvXX3gX2Eip/St65X7Hb5anMeRaRA8cbuwKdEjqDvusEiBl6voU1PtLAsIzQ6l8h54IWpHNxZbduXxYclqnw==
   dependencies:
     mayo-logger "^1.0.8"
 
