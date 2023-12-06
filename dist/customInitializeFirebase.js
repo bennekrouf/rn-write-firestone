@@ -13,15 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.customInitializeFirebase = void 0;
-// Assuming both functions are in the same directory for simplicity
 const mayo_firebase_config_1 = require("mayo-firebase-config");
 const app_1 = __importDefault(require("@react-native-firebase/app"));
 const mayo_logger_1 = require("mayo-logger");
-const customInitializeFirebase = () => __awaiter(void 0, void 0, void 0, function* () {
+const customInitializeFirebase = (providedConfiguration = undefined) => __awaiter(void 0, void 0, void 0, function* () {
     mayo_logger_1.Logger.info('Starting Firebase custom initialization...', null, { tag: 'mayo-firebase-write' });
     try {
-        const firebaseConfig = yield (0, mayo_firebase_config_1.extractFirebaseConfig)();
-        // Logging the extraction process
+        const firebaseConfig = providedConfiguration || (yield (0, mayo_firebase_config_1.extractFirebaseConfig)());
         if (firebaseConfig) {
             mayo_logger_1.Logger.info('Successfully extracted Firebase config', null, { tag: 'mayo-firebase-write' });
         }
@@ -33,7 +31,6 @@ const customInitializeFirebase = () => __awaiter(void 0, void 0, void 0, functio
             mayo_logger_1.Logger.error(errorMsg, null, { tag: 'mayo-firebase-write' });
             throw new Error(errorMsg);
         }
-        // Logging the actual Firebase config; be cautious about this in a production environment
         mayo_logger_1.Logger.info('Firebase config:', { firebaseConfig }, { tag: 'mayo-firebase-write' });
         if (!app_1.default.apps.length) {
             mayo_logger_1.Logger.info('Initializing firebase app', null, { tag: 'mayo-firebase-write' });

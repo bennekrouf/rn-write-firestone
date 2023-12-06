@@ -17,9 +17,9 @@ const async_storage_1 = __importDefault(require("@react-native-community/async-s
 const getStorageDetails_1 = require("./utils/getStorageDetails");
 const mayo_logger_1 = require("mayo-logger");
 const flushFromAsyncStorage = () => __awaiter(void 0, void 0, void 0, function* () {
-    const details = yield (0, getStorageDetails_1.getStorageDetails)();
-    mayo_logger_1.Logger.info('Attempting to remove storageKey from AsyncStorage', { key: details.asyncStorageKey }, { tag: 'mayo-firestore-write' });
     try {
+        const details = yield (0, getStorageDetails_1.getStorageDetails)();
+        mayo_logger_1.Logger.info('Attempting to remove storageKey from AsyncStorage', { key: details.asyncStorageKey }, { tag: 'mayo-firestore-write' });
         yield async_storage_1.default.removeItem(details.asyncStorageKey);
         mayo_logger_1.Logger.info('Data successfully removed from AsyncStorage', { key: details.asyncStorageKey }, { tag: 'mayo-firestore-write' });
     }

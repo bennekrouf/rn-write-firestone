@@ -15,9 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUser = void 0;
 const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
 const mayo_logger_1 = require("mayo-logger");
-function getUser() {
+function getUser(storageKey = 'user') {
     return __awaiter(this, void 0, void 0, function* () {
-        const storageKey = 'user';
         try {
             const userString = yield async_storage_1.default.getItem(storageKey);
             if (userString !== null) {

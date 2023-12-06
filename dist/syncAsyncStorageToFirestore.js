@@ -19,9 +19,9 @@ const loadFromAsyncStorage_1 = require("./loadFromAsyncStorage");
 const getStorageDetails_1 = require("./utils/getStorageDetails");
 const syncAsyncStorageToFirestore = () => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    const details = yield (0, getStorageDetails_1.getStorageDetails)();
-    mayo_logger_1.Logger.info('Starting sync of AsyncStorage data to Firestore', { key: details.asyncStorageKey }, { tag: 'mayo-firestore-write' });
     try {
+        const details = yield (0, getStorageDetails_1.getStorageDetails)();
+        mayo_logger_1.Logger.info('Starting sync of AsyncStorage data to Firestore', { key: details.asyncStorageKey }, { tag: 'mayo-firestore-write' });
         // Retrieve current data from AsyncStorage
         let existingDataString = yield (0, loadFromAsyncStorage_1.loadFromAsyncStorage)();
         const asyncStorageData = existingDataString || {};

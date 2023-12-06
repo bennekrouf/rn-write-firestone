@@ -10,7 +10,7 @@ declare module 'mayo-firestore-write' {
       data: any;
     }
   
-    export function signInFirebase(googleCredential: any, firebaseConfig: any | null): Promise<User>;
+    export function signInFirebase(googleCredential: any, firebaseConfig?: any | null): Promise<User>;
 
     export function writeToFirebase(data: any, merge?: boolean): Promise<User | null>;
     export function loadFromFirestore(): Promise<any | null>;

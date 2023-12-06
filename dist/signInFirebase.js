@@ -18,10 +18,10 @@ const async_storage_1 = __importDefault(require("@react-native-async-storage/asy
 const mayo_logger_1 = require("mayo-logger");
 const customInitializeFirebase_1 = require("./customInitializeFirebase");
 const writeToFirebase_1 = require("./writeToFirebase");
-const signInFirebase = (googleCredential) => __awaiter(void 0, void 0, void 0, function* () {
+const signInFirebase = (googleCredential, firebaseConfig) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
-        yield (0, customInitializeFirebase_1.customInitializeFirebase)();
+        yield (0, customInitializeFirebase_1.customInitializeFirebase)(firebaseConfig);
         mayo_logger_1.Logger.info('Attempting Firebase signInWithCredential sign-in', { googleCredential }, { tag: 'mayo-firestore-write' });
         // Sign in to Firebase
         const firebaseUserCredential = yield (0, auth_1.default)().signInWithCredential(googleCredential);

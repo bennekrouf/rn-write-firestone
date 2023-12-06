@@ -18,9 +18,9 @@ const mayo_logger_1 = require("mayo-logger");
 const getStorageDetails_1 = require("./utils/getStorageDetails");
 const loadFromFirestore = () => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
-    const details = yield (0, getStorageDetails_1.getStorageDetails)();
-    mayo_logger_1.Logger.info('Attempting to load document from Firestore with key', { key: details.firestoreKey }, { tag: 'mayo-firestore-write' });
     try {
+        const details = yield (0, getStorageDetails_1.getStorageDetails)();
+        mayo_logger_1.Logger.info('Attempting to load document from Firestore with key', { key: details.firestoreKey }, { tag: 'mayo-firestore-write' });
         // Validate if appCollection and key are defined and non-empty.
         if (!details.collection || !details.firestoreKey) {
             mayo_logger_1.Logger.warn(`appCollection or key is undefined or empty.`);
