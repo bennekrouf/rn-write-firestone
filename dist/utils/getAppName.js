@@ -7,14 +7,14 @@ exports.getAppName = void 0;
 const app_1 = __importDefault(require("@react-native-firebase/app"));
 const react_native_device_info_1 = __importDefault(require("react-native-device-info"));
 const getAppName = () => {
-    const bundleID = react_native_device_info_1.default.getBundleId();
-    if (!app_1.default.apps.length) {
-        console.log(`RN Init firebase app`);
-        return 'NO_APP_NAME';
+    var _a;
+    if (!((_a = app_1.default === null || app_1.default === void 0 ? void 0 : app_1.default.apps) === null || _a === void 0 ? void 0 : _a.length)) {
+        // If no Firebase app is initialized, throw an error
+        throw new Error("Firebase app is not initialized");
     }
-    else {
-        const defaultApp = app_1.default.app();
-        return defaultApp.name !== '[DEFAULT]' ? defaultApp.name : bundleID;
-    }
+    // Assuming a Firebase app is initialized, get the default app
+    const defaultApp = app_1.default.app();
+    // Return the name of the Firebase app if it's not '[DEFAULT]', otherwise return the bundle ID
+    return defaultApp.name !== '[DEFAULT]' ? defaultApp.name : react_native_device_info_1.default.getBundleId();
 };
 exports.getAppName = getAppName;
