@@ -21,3 +21,4 @@ __exportStar(require("./writeToAsyncStorage"), exports);
 __exportStar(require("./syncAsyncStorageToFirestore"), exports);
 __exportStar(require("./getUser"), exports);
 __exportStar(require("./flushFromAsyncStorage"), exports);
+__exportStar(require("./customInitializeFirebase"), exports);

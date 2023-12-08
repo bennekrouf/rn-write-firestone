@@ -5,3 +5,4 @@ export * from './writeToAsyncStorage';
 export * from './syncAsyncStorageToFirestore';
 export * from './getUser';
 export * from './flushFromAsyncStorage';
+export * from './customInitializeFirebase';
