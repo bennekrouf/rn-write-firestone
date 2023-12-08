@@ -1,5 +1,5 @@
 declare module 'mayo-firestore-write' {
-    interface FirebaseConfig {
+  interface FirebaseConfig {
       apiKey: string;
       authDomain: string;
     }
@@ -20,5 +20,6 @@ declare module 'mayo-firestore-write' {
     export function flushFromAsyncStorage(): Promise<null>;
     
     export function getUser(): Promise<User | null>;
+    export function customInitializeFirebase(providedConfiguration?: any): Promise<any>;
   }
   

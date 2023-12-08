@@ -10,7 +10,7 @@ const getAppName = () => {
     var _a;
     if (!((_a = app_1.default === null || app_1.default === void 0 ? void 0 : app_1.default.apps) === null || _a === void 0 ? void 0 : _a.length)) {
         // If no Firebase app is initialized, throw an error
-        throw new Error("Firebase app is not initialized");
+        throw new Error("Firebase app is not initialized. Call signInFirebase before!");
     }
     // Assuming a Firebase app is initialized, get the default app
     const defaultApp = app_1.default.app();

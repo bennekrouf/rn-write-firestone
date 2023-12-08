@@ -7,9 +7,7 @@ export const customInitializeFirebase = async (providedConfiguration:any = undef
     Logger.info('Starting Firebase custom initialization...', null, { tag: 'mayo-firebase-write' });
 
     try {
-
         const firebaseConfig = providedConfiguration || await extractFirebaseConfig();
-
         if (firebaseConfig) {
             Logger.info('Successfully extracted Firebase config', null, { tag: 'mayo-firebase-write' });
         } else {

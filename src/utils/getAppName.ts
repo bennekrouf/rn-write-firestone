@@ -4,7 +4,7 @@ import DeviceInfo from 'react-native-device-info';
 export const getAppName = () : string => {
   if (!firebase?.apps?.length) {
     // If no Firebase app is initialized, throw an error
-    throw new Error("Firebase app is not initialized");
+    throw new Error("Firebase app is not initialized. Call signInFirebase before!");
   }
 
   // Assuming a Firebase app is initialized, get the default app
