@@ -13,13 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.customInitializeFirebase = void 0;
-const mayo_firebase_config_1 = require("mayo-firebase-config");
 const app_1 = __importDefault(require("@react-native-firebase/app"));
 const mayo_logger_1 = require("mayo-logger");
 const customInitializeFirebase = (providedConfiguration = undefined) => __awaiter(void 0, void 0, void 0, function* () {
     mayo_logger_1.Logger.info('Starting Firebase custom initialization...', null, { tag: 'mayo-firebase-write' });
     try {
-        const firebaseConfig = providedConfiguration || (yield (0, mayo_firebase_config_1.extractFirebaseConfig)());
+        const firebaseConfig = providedConfiguration;
         if (firebaseConfig) {
             mayo_logger_1.Logger.info('Successfully extracted Firebase config', null, { tag: 'mayo-firebase-write' });
         }
