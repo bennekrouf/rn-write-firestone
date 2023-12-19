@@ -7,11 +7,11 @@ export const getStorageDetails = async () => {
     Logger.info("Fetching application name...", null, {tag: 'mayo-firestore-write'});
     const app = getAppName();
 
-    Logger.info("Fetching key...");
+    Logger.info("Fetching key...", null, {tag: 'mayo-firestore-write'});
     const key = await getKey();
 
     if (!app) {
-      Logger.warn("Application name not retrieved. It might be undefined or null.");
+      Logger.warn("Application name not retrieved. It might be undefined or null.", null, {tag: 'mayo-firestore-write'});
     }
 
     const appCollection = app?.toLocaleLowerCase();
@@ -19,8 +19,8 @@ export const getStorageDetails = async () => {
     const firestoreKey = key;
     const asyncStorageKey = `${appCollection}:${key}`;
     
-    Logger.info(`Constructed storage key for AsyncStorage: ${asyncStorageKey}`);
-    Logger.info(`Constructed key for Firestore: ${firestoreKey}`);
+    Logger.info(`Constructed storage key for AsyncStorage: `, asyncStorageKey, {tag: 'mayo-firestore-write'});
+    Logger.info(`Constructed key for Firestore:`, firestoreKey, {tag: 'mayo-firestore-write'});
 
     return {
       collection: appCollection,  // For Firestore
