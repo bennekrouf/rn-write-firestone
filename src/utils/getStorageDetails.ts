@@ -4,7 +4,7 @@ import { Logger } from "mayo-logger";
 
 export const getStorageDetails = async () => {
   try {
-    Logger.info("Fetching application name...");
+    Logger.info("Fetching application name...", null, {tag: 'mayo-firestore-write'});
     const app = getAppName();
 
     Logger.info("Fetching key...");
@@ -28,7 +28,7 @@ export const getStorageDetails = async () => {
       asyncStorageKey: asyncStorageKey  // For AsyncStorage
     };
   } catch (err) {
-    Logger.error("Failed to construct storage details:", err);
+    Logger.error("Failed to construct storage details:", err, {tag: 'mayo-firestore-write'});
     throw err; 
   }
 };

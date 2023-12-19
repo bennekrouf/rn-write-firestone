@@ -15,7 +15,7 @@ const getKey_1 = require("./getKey");
 const mayo_logger_1 = require("mayo-logger");
 const getStorageDetails = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        mayo_logger_1.Logger.info("Fetching application name...");
+        mayo_logger_1.Logger.info("Fetching application name...", null, { tag: 'mayo-firestore-write' });
         const app = (0, getAppName_1.getAppName)();
         mayo_logger_1.Logger.info("Fetching key...");
         const key = yield (0, getKey_1.getKey)();
@@ -34,7 +34,7 @@ const getStorageDetails = () => __awaiter(void 0, void 0, void 0, function* () {
         };
     }
     catch (err) {
-        mayo_logger_1.Logger.error("Failed to construct storage details:", err);
+        mayo_logger_1.Logger.error("Failed to construct storage details:", err, { tag: 'mayo-firestore-write' });
         throw err;
     }
 });
