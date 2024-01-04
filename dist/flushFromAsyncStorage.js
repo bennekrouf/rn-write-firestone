@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.flushFromAsyncStorage = void 0;
-const async_storage_1 = __importDefault(require("@react-native-community/async-storage"));
+const async_storage_1 = __importDefault(require("@react-native-async-storage/async-storage"));
 const getStorageDetails_1 = require("./utils/getStorageDetails");
 const mayo_logger_1 = require("mayo-logger");
 const flushFromAsyncStorage = () => __awaiter(void 0, void 0, void 0, function* () {

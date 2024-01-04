@@ -1,6 +1,6 @@
 {
   "name": "mayo-firestore-write",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "license": "MIT",
   "author": "Mohamed Bennekrouf",
   "main": "dist/index.js",
@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.19.3",
-    "@react-native-community/async-storage": "^1.12.1",
     "@react-native-firebase/app": "^18.5.0",
     "@react-native-firebase/auth": "^18.5.0",
     "@react-native-firebase/firestore": "^18.5.0",
