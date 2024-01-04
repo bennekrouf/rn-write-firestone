@@ -31,13 +31,13 @@ const customInitializeFirebase = (providedConfiguration = undefined) => __awaite
             throw new Error(errorMsg);
         }
         mayo_logger_1.Logger.info('Firebase config:', { firebaseConfig }, { tag: 'mayo-firebase-write' });
-        if (!app_1.default.apps.length) {
+        if (app_1.default.apps.length === 0) {
             mayo_logger_1.Logger.info('Initializing firebase app', null, { tag: 'mayo-firebase-write' });
             return app_1.default.initializeApp(firebaseConfig);
         }
         else {
             mayo_logger_1.Logger.info('Firebase app already initialized', null, { tag: 'mayo-firebase-write' });
-            return app_1.default.app();
+            return app_1.default === null || app_1.default === void 0 ? void 0 : app_1.default.app();
         }
     }
     catch (error) {

@@ -1,6 +1,6 @@
 {
   "name": "mayo-firestore-write",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "license": "MIT",
   "author": "Mohamed Bennekrouf",
   "main": "dist/index.js",

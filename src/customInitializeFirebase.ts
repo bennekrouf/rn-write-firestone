@@ -21,12 +21,12 @@ export const customInitializeFirebase = async (providedConfiguration:any = undef
 
         Logger.info('Firebase config:', { firebaseConfig }, { tag: 'mayo-firebase-write' });
 
-        if (!firebase.apps.length) {
+        if (firebase.apps.length === 0) {
             Logger.info('Initializing firebase app', null, { tag: 'mayo-firebase-write' });
             return firebase.initializeApp(firebaseConfig);
         } else {
             Logger.info('Firebase app already initialized', null, { tag: 'mayo-firebase-write' });
-            return firebase.app();
+            return firebase?.app();
         }
     } catch (error) {
         Logger.error('Error initializing firebase app', error, { tag: 'mayo-firebase-write' });
