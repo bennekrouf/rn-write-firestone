@@ -1,4 +1,4 @@
-# 🚀 Firetstore Helper for React Native
+# 🚀 Firestore Helper for React Native
 
 A utility package for React Native apps which provides an abstract layer around Firebase functionalities, particularly focusing on authentication, and syncing between Firestore and AsyncStorage.
 
